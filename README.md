@@ -1,1 +1,1 @@
-# oauth2-as
+OAuth2 Auth Server sandbox
