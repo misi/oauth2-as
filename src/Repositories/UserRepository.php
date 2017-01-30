@@ -7,11 +7,11 @@
  * @link        https://github.com/thephpleague/oauth2-server
  */
 
-namespace OAuth2ServerExamples\Repositories;
+namespace OAuth2ServerMisi\Repositories;
 
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Repositories\UserRepositoryInterface;
-use OAuth2ServerExamples\Entities\UserEntity;
+use OAuth2ServerMisi\Entities\UserEntity;
 
 class UserRepository implements UserRepositoryInterface
 {

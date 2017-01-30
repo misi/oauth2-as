@@ -11,7 +11,7 @@
     },
     "autoload": {
         "psr-4": {
-            "OAuth2ServerExamples\\": "src/",
+            "OAuth2ServerMisi\\": "src/",
             "League\\OAuth2\\Server\\": "../src/"
         }
     }
