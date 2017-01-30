@@ -3,11 +3,11 @@
 use League\OAuth2\Server\AuthorizationServer;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use League\OAuth2\Server\Grant\PasswordGrant;
-use OAuth2ServerExamples\Repositories\AccessTokenRepository;
-use OAuth2ServerExamples\Repositories\ClientRepository;
-use OAuth2ServerExamples\Repositories\RefreshTokenRepository;
-use OAuth2ServerExamples\Repositories\ScopeRepository;
-use OAuth2ServerExamples\Repositories\UserRepository;
+use OAuth2ServerMisi\Repositories\AccessTokenRepository;
+use OAuth2ServerMisi\Repositories\ClientRepository;
+use OAuth2ServerMisi\Repositories\RefreshTokenRepository;
+use OAuth2ServerMisi\Repositories\ScopeRepository;
+use OAuth2ServerMisi\Repositories\UserRepository;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\App;

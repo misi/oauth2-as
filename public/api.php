@@ -1,7 +1,7 @@
 <?php
 
 use League\OAuth2\Server\ResourceServer;
-use OAuth2ServerExamples\Repositories\AccessTokenRepository;
+use OAuth2ServerMisi\Repositories\AccessTokenRepository;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\App;
