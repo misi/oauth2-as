@@ -33,9 +33,9 @@ CREATE TABLE `relations` (
   `grant_type` ENUM('authorization_code','client_credentials','password','implicit') NOT NULL COMMENT 'Grant Type',
   `token_type` ENUM('Bearer','pop','jwt') NOT NULL DEFAULT 'Bearer' COMMENT 'Token Type',
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`clients_id`) REFERENCES `clients` (`id`),
-  FOREIGN KEY (`users_id`) REFERENCES `users` (`id`),
-  FOREIGN KEY (`scopes_id`) REFERENCES `scopes` (`id`)
+  FOREIGN KEY (`clients_id`) REFERENCES `clients`(`id`),
+  FOREIGN KEY (`users_id`) REFERENCES `users`(`id`),
+  FOREIGN KEY (`scopes_id`) REFERENCES `scopes`(`id`)
 );
 
 CREATE TABLE `auth_code` (
