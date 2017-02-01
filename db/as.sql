@@ -1,6 +1,6 @@
 CREATE TABLE `clients` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `client_id` varchar(255) NOT NULL, COMMENT 'Client UUID'
+  `client_id` varchar(255) NOT NULL, COMMENT 'Client UUID',
   `name` varchar(255) NOT NULL COMMENT 'Client/App name',
   `client_secret` varchar(2000) DEFAULT NULL COMMENT 'Client Secret for Password or Client Credentials',
   `redirect_urls` varchar(2000) DEFAULT NULL COMMENT 'redirect URI or a serialiazed indexed array of redirect URIs',
@@ -20,54 +20,22 @@ CREATE TABLE `users` (
 CREATE TABLE `scopes` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `scope` varchar(1000) NOT NULL COMMENT 'Scope',
-  `scope_is_default` BOOLEAN NOT NULL DEFAULT 'false', COMMENT 'Force to add it to scopes, even if it is not requested'
   `description` varchar(2000) DEFAULT NULL, 'Description of the scope',
   PRIMARY KEY (`id`)
 );
 
-CREATE TABLE `relations` (
+CREATE TABLE `client_user_scope_grant-type_token-type` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `clients_id` bigint(20) unsigned NOT NULL,
   `users_id` bigint(20) unsigned NOT NULL,
   `scopes_id` varchar(1000) NOT NULL COMMENT 'Scope',
-  `grant_type` ENUM('Authorization Code Grant','Client Credentials Grant','Password Grant','Implicit Grant') NOT NULL COMMENT 'Grant Type',
-  `token_type` ENUM('Bearer','pop') NOT NULL DEFAULT 'Bearer' COMMENT 'Token Type',
+  `scope_is_default` BOOLEAN NOT NULL DEFAULT 'false', COMMENT 'Force to add it to scopes, even if it is not requested'
+  `grant_type` ENUM('authorization_code','client_credentials','password','implicit') NOT NULL COMMENT 'Grant Type',
+  `token_type` ENUM('Bearer','pop','jwt') NOT NULL DEFAULT 'Bearer' COMMENT 'Token Type',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `client_scope_grant-type_token-type` (`clients_id`,`users_id`,`scopes_id`, `grant_type`,`token_type`),
-  FOREIGN KEY (`clients_id`) REFERENCES `clients` (`id`),
-  FOREIGN KEY (`users_id`) REFERENCES `users` (`id`),
-  FOREIGN KEY (`scopes_id`) REFERENCES `scopes` (`id`),
+  UNIQUE KEY `client_scope_grant-type_token-type` (`clients_id`,`scopes_id`, `grant_type`,`token_type`),
+  UNIQUE KEY `user_scope_grant-type_token-type` (`users_id`,`scopes_id`, `grant_type`,`token_type`)
 );
-
-CREATE TABLE `auth_code` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `token` varchar(1000) NOT NULL COMMENT 'Token',
-  `created` timestamp NOT NULL DEAFAULT CURRENT_TIMESTAMP COMMENT 'Creation Timestamp',
-  `revoked` timestamp DEAFAULT NULL COMMENT 'Revocation Timestamp',
-  PRIMARY KEY (`id`),
-  FOREIGN KEY (`relations`) REFERENCES `relations` (`id`),
-);
-
-CREATE TABLE `access_token` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `token` varchar(1000) NOT NULL COMMENT 'Token',
-  `created` timestamp NOT NULL DEAFAULT CURRENT_TIMESTAMP COMMENT 'Creation Timestamp',
-  `revoked` timestamp DEAFAULT NULL COMMENT 'Revocation Timestamp',
-  PRIMARY KEY (`id`),
-  FOREIGN KEY (`relations`) REFERENCES `relations` (`id`),
-);
-
-CREATE TABLE `refresh_token` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `token` varchar(1000) NOT NULL COMMENT 'Token',
-  `created` timestamp NOT NULL DEAFAULT CURRENT_TIMESTAMP COMMENT 'Creation Timestamp',
-  `revoked` timestamp DEAFAULT NULL COMMENT 'Revocation Timestamp',
-  PRIMARY KEY (`id`),
-  FOREIGN KEY (`relations`) REFERENCES `relations` (`id`),
-);
-
-
-
 
 
 /*
