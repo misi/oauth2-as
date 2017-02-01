@@ -40,7 +40,7 @@ CREATE TABLE `relations` (
 
 CREATE TABLE `auth_code` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `relations_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `relations_id` bigint(20) unsigned NOT NULL,
   `token` varchar(1000) NOT NULL COMMENT 'Token',
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Creation Timestamp',
   `revoked` timestamp NULL DEFAULT NULL COMMENT 'Revocation Timestamp',
@@ -50,7 +50,7 @@ CREATE TABLE `auth_code` (
 
 CREATE TABLE `access_token` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `relations_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `relations_id` bigint(20) unsigned NOT NULL,
   `token` varchar(1000) NOT NULL COMMENT 'Token',
   `created` timestamp NOT NULL DEFAULT  COMMENT 'Creation Timestamp',
   `revoked` timestamp NULL DEFAULT NULL COMMENT 'Revocation Timestamp',
@@ -60,7 +60,7 @@ CREATE TABLE `access_token` (
 
 CREATE TABLE `refresh_token` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `relations_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `relations_id` bigint(20) unsigned NOT NULL,
   `token` varchar(1000) NOT NULL COMMENT 'Token',
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Creation Timestamp',
   `revoked` timestamp NULL DEFAULT NULL COMMENT 'Revocation Timestamp',
