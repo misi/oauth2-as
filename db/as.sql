@@ -6,7 +6,7 @@ CREATE TABLE `clients` (
   `redirect_urls` varchar(2000) DEFAULT NULL COMMENT 'redirect URI or a serialiazed indexed array of redirect URIs',
   PRIMARY KEY (`id`),
   UNIQUE KEY `client_id` (`client_id`)
-);
+) ENGINE=InnoDB;
 
 CREATE TABLE `users` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -15,14 +15,14 @@ CREATE TABLE `users` (
   `password` varchar(2000) NOT NULL COMMENT 'Encrypted Password',
   `redirect_urls` varchar(2000) DEFAULT NULL COMMENT 'redirect URI or a serialiazed indexed array of redirect URIs',
   PRIMARY KEY (`id`)
-);
+) ENGINE=InnoDB;
 
 CREATE TABLE `scopes` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `scope` varchar(1000) NOT NULL COMMENT 'Scope',
   `description` varchar(2000) DEFAULT NULL COMMENT 'Description of the scope',
   PRIMARY KEY (`id`)
-);
+) ENGINE=InnoDB;
 
 CREATE TABLE `relations` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -33,10 +33,10 @@ CREATE TABLE `relations` (
   `grant_type` ENUM('authorization_code','client_credentials','password','implicit') NOT NULL COMMENT 'Grant Type',
   `token_type` ENUM('Bearer','pop','jwt') NOT NULL DEFAULT 'Bearer' COMMENT 'Token Type',
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`clients_id`) REFERENCES `clients`(`id`),
-  FOREIGN KEY (`users_id`) REFERENCES `users`(`id`),
-  FOREIGN KEY (`scopes_id`) REFERENCES `scopes`(`id`)
-);
+  FOREIGN KEY (`clients_id`) REFERENCES `clients` (`id`),
+  FOREIGN KEY (`users_id`) REFERENCES `users` (`id`),
+  FOREIGN KEY (`scopes_id`) REFERENCES `scopes` (`id`)
+) ENGINE=InnoDB;
 
 CREATE TABLE `auth_code` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -45,7 +45,7 @@ CREATE TABLE `auth_code` (
   `revoked` timestamp DEAFAULT NULL COMMENT 'Revocation Timestamp',
   PRIMARY KEY (`id`),
   FOREIGN KEY (`relations`) REFERENCES `relations` (`id`),
-);
+) ENGINE=InnoDB;
 
 CREATE TABLE `access_token` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -54,7 +54,7 @@ CREATE TABLE `access_token` (
   `revoked` timestamp DEAFAULT NULL COMMENT 'Revocation Timestamp',
   PRIMARY KEY (`id`),
   FOREIGN KEY (`relations`) REFERENCES `relations` (`id`),
-);
+) ENGINE=InnoDB;
 
 CREATE TABLE `refresh_token` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -63,7 +63,7 @@ CREATE TABLE `refresh_token` (
   `revoked` timestamp DEAFAULT NULL COMMENT 'Revocation Timestamp',
   PRIMARY KEY (`id`),
   FOREIGN KEY (`relations`) REFERENCES `relations` (`id`),
-);
+) ENGINE=InnoDB;
 
 
 /*
