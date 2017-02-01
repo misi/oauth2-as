@@ -28,7 +28,7 @@ CREATE TABLE `relations` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `clients_id` bigint(20) unsigned NOT NULL,
   `users_id` bigint(20) unsigned NOT NULL,
-  `scopes_id` varchar(1000) NOT NULL COMMENT 'Scope',
+  `scopes_id` bigint(20) NOT NULL COMMENT 'Scope',
   `scope_is_default` BOOLEAN NOT NULL DEFAULT 0 COMMENT 'Force to add it to scopes, even if it is not requested',
   `grant_type` ENUM('authorization_code','client_credentials','password','implicit') NOT NULL COMMENT 'Grant Type',
   `token_type` ENUM('Bearer','pop','jwt') NOT NULL DEFAULT 'Bearer' COMMENT 'Token Type',
