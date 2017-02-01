@@ -1,8 +1,8 @@
 CREATE TABLE `clients` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `client_id` varchar(255) NOT NULL, COMMENT 'Client UUID',
+  `client_id` varchar(255) NOT NULL COMMENT 'Client UUID',
   `name` varchar(255) NOT NULL COMMENT 'Client/App name',
-  `client_secret` varchar(2000) DEFAULT NULL COMMENT 'Client Secret for Password or Client Credentials',
+  `client_secret` varchar(2000) DEFAULT NULL COMMENT 'Encrypted Client Secret',
   `redirect_urls` varchar(2000) DEFAULT NULL COMMENT 'redirect URI or a serialiazed indexed array of redirect URIs',
   PRIMARY KEY (`id`),
   UNIQUE KEY `client_id` (`client_id`)
@@ -10,20 +10,19 @@ CREATE TABLE `clients` (
 
 CREATE TABLE `users` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` varchar(255) NOT NULL, COMMENT 'User UUID',
+  `user_id` varchar(255) NOT NULL COMMENT 'User UUID',
   `username` varchar(255) NOT NULL COMMENT 'Login name',
-  `password` varchar(2000) NOT NULL,
-  `redirect_urls` varchar(2000) DEFAULT NULL, 'redirect URI or a serialiazed indexed array of redirect URIs',
+  `password` varchar(2000) NOT NULL COMMENT 'Encrypted Password',
+  `redirect_urls` varchar(2000) DEFAULT NULL COMMENT 'redirect URI or a serialiazed indexed array of redirect URIs',
   PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `scopes` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `scope` varchar(1000) NOT NULL COMMENT 'Scope',
-  `description` varchar(2000) DEFAULT NULL, 'Description of the scope',
+  `description` varchar(2000) DEFAULT NULL COMMENT 'Description of the scope',
   PRIMARY KEY (`id`)
 );
-
 
 CREATE TABLE `relations` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
