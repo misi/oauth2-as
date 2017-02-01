@@ -52,7 +52,7 @@ CREATE TABLE `access_token` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `relations_id` bigint(20) unsigned NOT NULL,
   `token` varchar(1000) NOT NULL COMMENT 'Token',
-  `created` timestamp NOT NULL DEFAULT  COMMENT 'Creation Timestamp',
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Creation Timestamp',
   `revoked` timestamp NULL DEFAULT NULL COMMENT 'Revocation Timestamp',
   PRIMARY KEY (`id`),
   FOREIGN KEY (`relations_id`) REFERENCES `relations` (`id`)
