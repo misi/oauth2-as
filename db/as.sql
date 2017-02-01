@@ -20,6 +20,7 @@ CREATE TABLE `users` (
 CREATE TABLE `scopes` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `scope` varchar(1000) NOT NULL COMMENT 'Scope',
+  `scope_is_default` BOOLEAN NOT NULL DEFAULT 'false' COMMENT 'Force to add it to scopes, even if it is not requested',
   `description` varchar(2000) DEFAULT NULL COMMENT 'Description of the scope',
   PRIMARY KEY (`id`)
 );
@@ -34,8 +35,8 @@ CREATE TABLE `relations` (
   PRIMARY KEY (`id`),
   FOREIGN KEY (`clients_id`) REFERENCES `clients` (`id`),
   FOREIGN KEY (`users_id`) REFERENCES `users` (`id`),
-  FOREIGN KEY (`scopes_id`) REFERENCES `scopes` (`id`),
- );
+  FOREIGN KEY (`scopes_id`) REFERENCES `scopes` (`id`)
+);
 
 CREATE TABLE `auth_code` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
