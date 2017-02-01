@@ -45,7 +45,7 @@ CREATE TABLE `auth_code` (
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Creation Timestamp',
   `revoked` timestamp NULL DEFAULT NULL COMMENT 'Revocation Timestamp',
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`relations_id`) REFERENCES `relations` (`id`),
+  FOREIGN KEY (`relations_id`) REFERENCES `relations` (`id`)
 ) ENGINE=InnoDB;
 
 CREATE TABLE `access_token` (
@@ -55,7 +55,7 @@ CREATE TABLE `access_token` (
   `created` timestamp NOT NULL DEFAULT  COMMENT 'Creation Timestamp',
   `revoked` timestamp NULL DEFAULT NULL COMMENT 'Revocation Timestamp',
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`relations_id`) REFERENCES `relations` (`id`),
+  FOREIGN KEY (`relations_id`) REFERENCES `relations` (`id`)
 ) ENGINE=InnoDB;
 
 CREATE TABLE `refresh_token` (
@@ -65,5 +65,5 @@ CREATE TABLE `refresh_token` (
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Creation Timestamp',
   `revoked` timestamp NULL DEFAULT NULL COMMENT 'Revocation Timestamp',
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`relations_id`) REFERENCES `relations` (`id`),
+  FOREIGN KEY (`relations_id`) REFERENCES `relations` (`id`)
 ) ENGINE=InnoDB;
