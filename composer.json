@@ -1,7 +1,10 @@
 {
     "require": {
         "slim/slim": "3.0.*",
-        "league/oauth2-server": "^5.1"
+        "league/oauth2-server": "^5.1",
+        "doctrine/orm": "^2.5",
+        "symfony/yaml": "^3.2",
+        "slim/twig-view": "^2.2"
     },
     "require-dev": {
         "league/event": "^2.1",
@@ -11,8 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "OAuth2ServerMisi\\": "src/",
-            "League\\OAuth2\\Server\\": "../src/"
+            "OAuth2Server\\": "src/"
         }
     }
 }

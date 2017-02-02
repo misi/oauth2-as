@@ -10,10 +10,10 @@
 use League\OAuth2\Server\AuthorizationServer;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use League\OAuth2\Server\Grant\ImplicitGrant;
-use OAuth2ServerMisi\Entities\UserEntity;
-use OAuth2ServerMisi\Repositories\AccessTokenRepository;
-use OAuth2ServerMisi\Repositories\ClientRepository;
-use OAuth2ServerMisi\Repositories\ScopeRepository;
+use OAuth2Server\Entities\UserEntity;
+use OAuth2Server\Repositories\AccessTokenRepository;
+use OAuth2Server\Repositories\ClientRepository;
+use OAuth2Server\Repositories\ScopeRepository;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\App;
