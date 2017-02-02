@@ -1,4 +1,4 @@
 <?php
 // Routes
-$app->get('/as/auth', OAuth2Server\Actions\AuthCodeAction::class)
+$app->get('/', OAuth2Server\Actions\AuthCodeAction::class)
     ->setName('auth_code');
