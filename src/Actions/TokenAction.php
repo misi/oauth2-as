@@ -11,7 +11,7 @@ use Zend\Diactoros\Stream;
 
 use Psr\Log\LoggerInterface;
 
-final class TokenCodeAction
+final class TokenAction
 {
     private $logger;
 
@@ -44,6 +44,6 @@ final class TokenCodeAction
 
             return $response->withStatus(500)->withBody($body);
           }
-        
+
     }
 }
