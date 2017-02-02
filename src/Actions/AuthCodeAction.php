@@ -24,7 +24,7 @@ final class AuthCodeAction
 
     private $authserver;
 
-    public function __construct(AuthorizationServer::class $authserver, LoggerInterface $logger)
+    public function __construct(AuthorizationServer $authserver, LoggerInterface $logger)
     {
         $this->logger = $logger;
         $this->authserver = $authserver;
