@@ -36,7 +36,7 @@ final class AuthCodeAction
         try {
             // Validate the HTTP request and return an AuthorizationRequest object.
             // The auth request object can be serialized into a user's session
-            $authRequest = $server->validateAuthorizationRequest($request);
+            $authRequest = $this->authserver->validateAuthorizationRequest($request);
 
             // Once the user has logged in set the user on the AuthorizationRequest
             $authRequest->setUser(new UserEntity());
@@ -46,7 +46,7 @@ final class AuthCodeAction
             $authRequest->setAuthorizationApproved(true);
 
             // Return the HTTP redirect response
-            return $server->completeAuthorizationRequest($authRequest, $response);
+            return $this->authserver->completeAuthorizationRequest($authRequest, $response);
         } catch (OAuthServerException $exception) {
             return $exception->generateHttpResponse($response);
         } catch (\Exception $exception) {
