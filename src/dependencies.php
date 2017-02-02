@@ -69,6 +69,6 @@ $container['authserver'] = function ($c) {
 // -----------------------------------------------------------------------------
 // Action factories
 // -----------------------------------------------------------------------------
-$container[App\Actions\AuthCodeAction::class] = function ($c) {
-    return new App\Actions\AuthCodeAction($c->get('authserver'), $c->get('logger'));
+$container[OAuth2Server\Actions\AuthCodeAction::class] = function ($c) {
+    return new OAuth2Server\Actions\AuthCodeAction($c->get('authserver'), $c->get('logger'));
 };
