@@ -46,8 +46,8 @@ $container['authserver'] = function ($c) {
     $authCodeRepository = new AuthCodeRepository();
     $refreshTokenRepository = new RefreshTokenRepository();
 
-    $privateKeyPath = 'file://' . __DIR__ . '/../../private.key';
-    $publicKeyPath = 'file://' . __DIR__ . '/../../public.key';
+    $privateKeyPath = 'file://' . __DIR__ . '/../private.key';
+    $publicKeyPath = 'file://' . __DIR__ . '/../public.key';
 
     // Setup the authorization server
     $server = new AuthorizationServer(
