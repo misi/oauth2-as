@@ -5,6 +5,10 @@ use OAuth2Server\Repositories\ClientRepository;
 use OAuth2Server\Repositories\RefreshTokenRepository;
 use OAuth2Server\Repositories\ScopeRepository;
 
+use League\OAuth2\Server\AuthorizationServer;
+use League\OAuth2\Server\Exception\OAuthServerException;
+use League\OAuth2\Server\Grant\AuthCodeGrant;
+
 
 // DIC configuration
 $container = $app->getContainer();
