@@ -1,4 +1,11 @@
 <?php
+use OAuth2Server\Repositories\AccessTokenRepository;
+use OAuth2Server\Repositories\AuthCodeRepository;
+use OAuth2Server\Repositories\ClientRepository;
+use OAuth2Server\Repositories\RefreshTokenRepository;
+use OAuth2Server\Repositories\ScopeRepository;
+
+
 // DIC configuration
 $container = $app->getContainer();
 
