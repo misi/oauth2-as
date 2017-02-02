@@ -27,7 +27,7 @@ final class TokenCodeAction
     {
         $this->logger->info("token action dispatched");
         $grant_type=$request->getHeader('grant_type');
-        
+
           try{
             // Try to respond to the access token request
             return $this->authserver->respondToAccessTokenRequest($request, $response);
@@ -44,7 +44,6 @@ final class TokenCodeAction
 
             return $response->withStatus(500)->withBody($body);
           }
-
-        }
+        
     }
 }
