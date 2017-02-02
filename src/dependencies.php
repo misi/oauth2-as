@@ -85,7 +85,8 @@ $container['authserver'] = function ($c) {
         new PasswordGrant(
             $userRepository, // instance of UserRepositoryInterface
             $refreshTokenRepository, // instance of RefreshTokenRepositoryInterface
-            new \DateInterval('P1M'), // refresh tokens will expire after 1 month
+            new \DateInterval('P1M') // refresh tokens will expire after 1 month
+        ),
         new \DateInterval('PT1H') // access tokens will expire after 1 hour
     );
 
