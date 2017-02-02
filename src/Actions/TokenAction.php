@@ -25,7 +25,7 @@ final class TokenCodeAction
 
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, $args)
     {
-        $this->logger->info("Home page action dispatched");
+        $this->logger->info("token action dispatched");
         try {
             // Validate the HTTP request and return an AuthorizationRequest object.
             // The auth request object can be serialized into a user's session
