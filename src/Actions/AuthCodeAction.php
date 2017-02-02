@@ -40,6 +40,7 @@ final class AuthCodeAction
 
             // Return the HTTP redirect response
             return $this->authserver->completeAuthorizationRequest($authRequest, $response);
+
         } catch (OAuthServerException $exception) {
             return $exception->generateHttpResponse($response);
         } catch (\Exception $exception) {

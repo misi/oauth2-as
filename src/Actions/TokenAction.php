@@ -26,27 +26,25 @@ final class TokenCodeAction
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, $args)
     {
         $this->logger->info("token action dispatched");
-        try {
-            // Validate the HTTP request and return an AuthorizationRequest object.
-            // The auth request object can be serialized into a user's session
-            $authRequest = $this->authserver->validateAuthorizationRequest($request);
+        $grant_type=$request->getHeader('grant_type');
+        
+          try{
+            // Try to respond to the access token request
+            return $this->authserver->respondToAccessTokenRequest($request, $response);
 
-            // Once the user has logged in set the user on the AuthorizationRequest
-            $authRequest->setUser(new UserEntity());
+          } catch (OAuthServerException $exception) {
 
-            // Once the user has approved or denied the client update the status
-            // (true = approved, false = denied)
-            $authRequest->setAuthorizationApproved(true);
-
-            // Return the HTTP redirect response
-            return $this->authserver->completeAuthorizationRequest($authRequest, $response);
-        } catch (OAuthServerException $exception) {
+            // All instances of OAuthServerException can be converted to a PSR-7 response
             return $exception->generateHttpResponse($response);
-        } catch (\Exception $exception) {
-            $body = new Stream('php://temp', 'r+');
+          } catch (\Exception $exception) {
+
+            // Catch unexpected exceptions
+            $body = $response->getBody();
             $body->write($exception->getMessage());
 
             return $response->withStatus(500)->withBody($body);
+          }
+
         }
     }
 }
