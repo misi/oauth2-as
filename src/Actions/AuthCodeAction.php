@@ -1,5 +1,5 @@
 <?php
-namespace OAuth2Server\Actions\Action;
+namespace OAuth2Server\Actions;
 
 
 use League\OAuth2\Server\AuthorizationServer;
