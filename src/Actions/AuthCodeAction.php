@@ -30,7 +30,7 @@ final class AuthCodeAction
         $this->authserver = $authserver;
     }
 
-    public function __invoke(Request $request, Response $response, $args)
+    public function __invoke(ServerRequestInterface $request, ResponseInterface $response, $args)
     {
         $this->logger->info("Home page action dispatched");
 
