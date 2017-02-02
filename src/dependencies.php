@@ -42,10 +42,11 @@ $container['authserver'] = function ($c) {
     $settings = $c->get('settings')['authserver'];
 
     // Init our repositories
+    $userRepository = new UserRepository();
     $clientRepository = new ClientRepository();
-    $accessTokenRepository = new AccessTokenRepository();
     $scopeRepository = new ScopeRepository();
     $authCodeRepository = new AuthCodeRepository();
+    $accessTokenRepository = new AccessTokenRepository();
     $refreshTokenRepository = new RefreshTokenRepository();
 
     $privateKeyPath = 'file://' . __DIR__ . '/../private.key';
@@ -68,6 +69,24 @@ $container['authserver'] = function ($c) {
             new \DateInterval('PT10M')
         ),
         new \DateInterval('PT1H')
+    );
+
+    // Enable the client credentials grant on the server
+    $server->enableGrantType(
+        new ClientCredentialsGrant(),
+        new \DateInterval('PT1H') // access tokens will expire after 1 hour
+    );
+
+    // Enable the implicit grant on the server with a token TTL of 1 hour
+    $server->enableGrantType(new ImplicitGrant(new \DateInterval('PT1H')));
+
+    // Enable the password grant on the server with a token TTL of 1 hour
+    $server->enableGrantType(
+        new PasswordGrant(
+            $userRepository, // instance of UserRepositoryInterface
+            $refreshTokenRepository, // instance of RefreshTokenRepositoryInterface
+            new \DateInterval('P1M'), // refresh tokens will expire after 1 month
+        new \DateInterval('PT1H') // access tokens will expire after 1 hour
     );
 
     // Enable the refresh token grant on the server with a token TTL of 1 month
