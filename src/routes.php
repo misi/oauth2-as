@@ -1,7 +1,8 @@
 <?php
 // Routes
-$app->post('/auth', OAuth2Server\Actions\AuthCodeAction::class)
-    ->setName('auth_code');
+$app->get('/auth', OAuth2Server\Actions\AuthCodeAction::class);
+
+$app->post('/auth', OAuth2Server\Actions\AuthCodeAction::class);
 
 $app->post('/token', OAuth2Server\Actions\TokenAction::class)
     ->setName('token');
