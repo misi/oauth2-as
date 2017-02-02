@@ -1,5 +1,5 @@
 <?php
-namespace OAuth2Server\App\Action;
+namespace OAuth2Server\Actions\Action;
 
 
 use League\OAuth2\Server\AuthorizationServer;
@@ -33,7 +33,7 @@ final class AuthCodeAction
     public function __invoke(Request $request, Response $response, $args)
     {
         $this->logger->info("Home page action dispatched");
-        
+
         return $response;
     }
 }
