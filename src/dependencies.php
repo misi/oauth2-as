@@ -109,3 +109,7 @@ $container['authserver'] = function ($c) {
 $container[OAuth2Server\Actions\AuthCodeAction::class] = function ($c) {
     return new OAuth2Server\Actions\AuthCodeAction($c->get('authserver'), $c->get('logger'));
 };
+
+$container[OAuth2Server\Actions\TokenAction::class] = function ($c) {
+    return new OAuth2Server\Actions\TokenAction($c->get('authserver'), $c->get('logger'));
+};
