@@ -57,7 +57,7 @@ CREATE TABLE `auth_code` (
 
 CREATE TABLE `auth_code_scope` (
   `access_token_id` bigint(20) unsigned NOT NULL,
-  `scopes_id` bigint(20) unsigned NOT NULL,
+  `scope_id` bigint(20) unsigned NOT NULL,
   PRIMARY KEY (`access_token_id`,`scopes_id`),
   FOREIGN KEY (`access_token_id`) REFERENCES `access_token` (`id`),
   FOREIGN KEY (`scope_id`) REFERENCES `scope` (`id`)
