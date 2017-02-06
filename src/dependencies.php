@@ -52,12 +52,12 @@ $container['authserver'] = function ($c) {
     $settings = $c->get('settings')['authserver'];
 
     // Init our repositories
-    $userRepository = new UserRepository();
-    $clientRepository = new ClientRepository();
-    $scopeRepository = new ScopeRepository();
-    $authCodeRepository = new AuthCodeRepository();
-    $accessTokenRepository = new AccessTokenRepository();
-    $refreshTokenRepository = new RefreshTokenRepository();
+    $userRepository = new UserRepository($c->get('pdo'), $c->get('logger'));
+    $clientRepository = new ClientRepository($c->get('pdo'), $c->get('logger'));
+    $scopeRepository = new ScopeRepository($c->get('pdo'), $c->get('logger'));
+    $authCodeRepository = new AuthCodeRepository($c->get('pdo'), $c->get('logger'));
+    $accessTokenRepository = new AccessTokenRepository($c->get('pdo'), $c->get('logger'));
+    $refreshTokenRepository = new RefreshTokenRepository($c->get('pdo'), $c->get('logger'));
 
     $privateKeyPath = 'file://' . __DIR__ . '/../private.key';
     $publicKeyPath = 'file://' . __DIR__ . '/../public.key';
