@@ -24,15 +24,6 @@ CREATE TABLE `scope` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 
-CREATE TABLE `acl_scope` (
-  `acl_id` bigint(20) unsigned NOT NULL,
-  `scope_id` bigint(20) unsigned NOT NULL,
-  `scope_is_default` BOOLEAN NOT NULL DEFAULT 0 COMMENT 'Force to add it to scopes, even if it is not requested',
-  PRIMARY KEY (`acl_id`,`scope_id`),
-  FOREIGN KEY (`acl_id`) REFERENCES `acl` (`id`),
-  FOREIGN KEY (`scope_id`) REFERENCES `scope` (`id`)
-) ENGINE=InnoDB;
-
 CREATE TABLE `acl` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `client_id` bigint(20) unsigned NOT NULL,
@@ -41,6 +32,15 @@ CREATE TABLE `acl` (
   PRIMARY KEY (`id`),
   FOREIGN KEY (`client_id`) REFERENCES `client` (`id`),
   FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+) ENGINE=InnoDB;
+
+CREATE TABLE `acl_scope` (
+  `acl_id` bigint(20) unsigned NOT NULL,
+  `scope_id` bigint(20) unsigned NOT NULL,
+  `scope_is_default` BOOLEAN NOT NULL DEFAULT 0 COMMENT 'Force to add it to scopes, even if it is not requested',
+  PRIMARY KEY (`acl_id`,`scope_id`),
+  FOREIGN KEY (`acl_id`) REFERENCES `acl` (`id`),
+  FOREIGN KEY (`scope_id`) REFERENCES `scope` (`id`)
 ) ENGINE=InnoDB;
 
 CREATE TABLE `auth_code` (
@@ -55,7 +55,7 @@ CREATE TABLE `auth_code` (
   FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
 ) ENGINE=InnoDB;
 
-CREATE TABLE `auth_codes_scopes` (
+CREATE TABLE `auth_code_scope` (
   `access_token_id` bigint(20) unsigned NOT NULL,
   `scopes_id` bigint(20) unsigned NOT NULL,
   PRIMARY KEY (`access_token_id`,`scopes_id`),
