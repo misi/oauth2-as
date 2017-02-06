@@ -125,7 +125,6 @@ $container[OAuth2Server\Actions\TokenAction::class] = function ($c) {
 };
 
 
-
 //Repositories
 $container[OAuth2Server\Repositories\AccessTokenRepository::class] = function ($c) {
     return new OAuth2Server\Repositories\AccessTokenRepository($c->get('pdo'),$c->get('logger'));
@@ -143,8 +142,8 @@ $container[OAuth2Server\Repositories\RefreshTokenRepository::class] = function (
     return new OAuth2Server\Repositories\RefreshTokenRepository($c->get('pdo'),$c->get('logger'));
 };
 
-$container[OAuth2Server\Repositories\ScopeRepositoryClientRepository::class] = function ($c) {
-    return new OAuth2Server\Repositories\ScopeRepositoryClientRepository($c->get('pdo'),$c->get('logger'));
+$container[OAuth2Server\Repositories\ScopeRepository::class] = function ($c) {
+    return new OAuth2Server\Repositories\ScopeRepository($c->get('pdo'),$c->get('logger'));
 };
 
 $container[OAuth2Server\Repositories\UserRepository::class] = function ($c) {
