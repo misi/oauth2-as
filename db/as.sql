@@ -31,7 +31,7 @@ CREATE TABLE `acl` (
   `grant_type` ENUM('authorization_code','client_credentials','password','implicit') NOT NULL COMMENT 'Grant Type',
   PRIMARY KEY (`id`),
   FOREIGN KEY (`client_id`) REFERENCES `client` (`id`),
-  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB;
 
 CREATE TABLE `acl_scope` (
@@ -52,7 +52,7 @@ CREATE TABLE `auth_code` (
   `revoked` timestamp NULL DEFAULT NULL COMMENT 'Revocation Timestamp',
   PRIMARY KEY (`id`),
   FOREIGN KEY (`client_id`) REFERENCES `client` (`id`),
-  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB;
 
 CREATE TABLE `auth_code_scope` (
@@ -72,7 +72,7 @@ CREATE TABLE `access_token` (
   `revoked` timestamp NULL DEFAULT NULL COMMENT 'Revocation Timestamp',
   PRIMARY KEY (`id`),
   FOREIGN KEY (`client_id`) REFERENCES `client` (`id`),
-  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB;
 
 CREATE TABLE `access_token_scope` (
