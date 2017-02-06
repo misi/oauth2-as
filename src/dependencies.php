@@ -33,6 +33,16 @@ $container['view'] = function ($c) {
     return $view;
 };
 
+//pdo
+$container['pdo'] = function ($c) {
+    $settings = $c->get('settings')['pdo'];
+    $pdo = new PDO($settings['dsn'], $settings['username'], $settings['password'], $settings['']);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    return $pdo;
+};
+
+
 // monolog
 $container['logger'] = function ($c) {
     $settings = $c->get('settings')['logger'];
@@ -112,4 +122,8 @@ $container[OAuth2Server\Actions\AuthCodeAction::class] = function ($c) {
 
 $container[OAuth2Server\Actions\TokenAction::class] = function ($c) {
     return new OAuth2Server\Actions\TokenAction($c->get('authserver'), $c->get('logger'));
+};
+
+$container[OAuth2Server\Actions\TokenAction::class] = function ($c) {
+    return new OAuth2Server\Actions\TokenAction($c->get('logger'));
 };
