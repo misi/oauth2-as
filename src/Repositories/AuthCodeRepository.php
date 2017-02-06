@@ -19,7 +19,7 @@ class AuthCodeRepository implements AuthCodeRepositoryInterface
 
     private $pdo;
 
-    public function __construct(PDO $pdo, LoggerInterface $logger)
+    public function __construct(\PDO $pdo, \Monolog\Logger $logger)
     {
       $this->pdo = $pdo;
       $this->logger = $logger;
