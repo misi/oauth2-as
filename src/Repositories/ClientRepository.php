@@ -14,6 +14,16 @@ use OAuth2Server\Entities\ClientEntity;
 
 class ClientRepository implements ClientRepositoryInterface
 {
+    private $logger;
+
+    private $pdo;
+
+    public function __construct(PDO $pdo, LoggerInterface $logger)
+    {
+      $this->pdo = $pdo;
+      $this->logger = $logger;
+    }
+
     /**
      * {@inheritdoc}
      */

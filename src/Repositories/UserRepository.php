@@ -15,6 +15,16 @@ use OAuth2Server\Entities\UserEntity;
 
 class UserRepository implements UserRepositoryInterface
 {
+    private $logger;
+
+    private $pdo;
+
+    public function __construct(PDO $pdo, LoggerInterface $logger)
+    {
+      $this->pdo = $pdo;
+      $this->logger = $logger;
+    }
+
     /**
      * {@inheritdoc}
      */
