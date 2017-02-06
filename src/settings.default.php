@@ -9,6 +9,10 @@ return [
             'dsn' => 'mysql:host=localhost;dbname=as;charset=utf8mb4;collation=utf8mb4_unicode_ci',
             'username' => 'db_user',
             'password' => 'db_password',
+            'options'=> [ 'PDO::ATTR_FETCH_TABLE_NAMES' => 'true',
+                          'PDO::ATTR_ERRMODE' => 'PDO::ERRMODE_EXCEPTION',
+                          'PDO::ATTR_DEFAULT_FETCH_MODE' => 'PDO::FETCH_ASSOC'
+                        ],
         ],
 
         // Renderer settings
