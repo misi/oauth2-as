@@ -36,7 +36,9 @@ $container['view'] = function ($c) {
 //pdo
 $container['pdo'] = function ($c) {
     $settings = $c->get('settings')['pdo'];
-    return new PDO($settings['dsn'], $settings['username'], $settings['password'], $settings['options']);
+    //return new PDO($settings['dsn'], $settings['username'], $settings['password'], $settings['options']);
+    return new PDO($settings['dsn'], $settings['username'], $settings['password']);
+
 };
 
 
