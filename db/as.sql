@@ -4,7 +4,7 @@ CREATE TABLE `client` (
   `name` varchar(255) NOT NULL COMMENT 'Client/App name',
   `client_secret` varchar(2000) DEFAULT NULL COMMENT 'Encrypted Client Secret',
   `redirect_urls` varchar(2000) DEFAULT NULL COMMENT 'redirect URI or a serialiazed indexed array of redirect URIs',
-  `trusted` BOOLEAN NOT NULL DEFAULT 'false' COMMENT 'redirect URI or a serialiazed indexed array of redirect URIs',
+  `trusted` BOOLEAN NOT NULL DEFAULT 0 COMMENT 'redirect URI or a serialiazed indexed array of redirect URIs',
   PRIMARY KEY (`id`),
   UNIQUE KEY `uuid` (`uuid`)
 ) ENGINE=InnoDB;
