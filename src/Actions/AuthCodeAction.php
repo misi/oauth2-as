@@ -10,6 +10,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Stream;
 
 use Psr\Log\LoggerInterface;
+use \PDO;
 
 final class AuthCodeAction
 {

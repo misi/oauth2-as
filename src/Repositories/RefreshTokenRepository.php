@@ -13,13 +13,16 @@ use League\OAuth2\Server\Entities\RefreshTokenEntityInterface;
 use League\OAuth2\Server\Repositories\RefreshTokenRepositoryInterface;
 use OAuth2Server\Entities\RefreshTokenEntity;
 
+use Psr\Log\LoggerInterface;
+use \PDO;
+
 class RefreshTokenRepository implements RefreshTokenRepositoryInterface
 {
     private $logger;
 
     private $pdo;
 
-    public function __construct(\PDO $pdo, \Monolog\Logger $logger)
+    public function __construct(PDO $pdo, LoggerInterface $logger)
     {
       $this->pdo = $pdo;
       $this->logger = $logger;
