@@ -56,10 +56,10 @@ CREATE TABLE `auth_code` (
 ) ENGINE=InnoDB;
 
 CREATE TABLE `auth_code_scope` (
-  `access_token_id` bigint(20) unsigned NOT NULL,
+  `auth_code_id` bigint(20) unsigned NOT NULL,
   `scope_id` bigint(20) unsigned NOT NULL,
-  PRIMARY KEY (`access_token_id`,`scope_id`),
-  FOREIGN KEY (`access_token_id`) REFERENCES `access_token` (`id`),
+  PRIMARY KEY (`auth_code_id`,`scope_id`),
+  FOREIGN KEY (`auth_code_id`) REFERENCES `auth_code` (`id`),
   FOREIGN KEY (`scope_id`) REFERENCES `scope` (`id`)
 ) ENGINE=InnoDB;
 
