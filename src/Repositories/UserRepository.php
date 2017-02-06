@@ -19,7 +19,7 @@ class UserRepository implements UserRepositoryInterface
 
     private $pdo;
 
-    public function __construct(\PDO $pdo, LoggerInterface $logger)
+    public function __construct(\PDO $pdo, Monolog\LoggerInterface $logger)
     {
       $this->pdo = $pdo;
       $this->logger = $logger;
