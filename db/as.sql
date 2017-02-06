@@ -6,7 +6,7 @@ CREATE TABLE `client` (
   `redirect_urls` varchar(2000) DEFAULT NULL COMMENT 'redirect URI or a serialiazed indexed array of redirect URIs',
   `trusted` BOOLEAN NOT NULL DEFAULT 'false' COMMENT 'redirect URI or a serialiazed indexed array of redirect URIs',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `client_id` (`client_id`)
+  UNIQUE KEY `uuid` (`uuid`)
 ) ENGINE=InnoDB;
 
 CREATE TABLE `user` (
