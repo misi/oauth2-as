@@ -14,7 +14,7 @@ use League\OAuth2\Server\Grant\ImplicitGrant;
 use League\OAuth2\Server\Grant\PasswordGrant;
 use League\OAuth2\Server\Grant\RefreshTokenGrant;
 use PDO;
-
+:
 
 // DIC configuration
 $container = $app->getContainer();
@@ -36,9 +36,8 @@ $container['view'] = function ($c) {
 //pdo
 $container['pdo'] = function ($c) {
     $settings = $c->get('settings')['pdo'];
-    //return new PDO($settings['dsn'], $settings['username'], $settings['password'], $settings['options']);
-    return new PDO($settings['dsn'], $settings['username'], $settings['password']);
-
+    $pdo = new PDO($settings['dsn'], $settings['username'], $settings['password'], $settings['options']);
+    return $pdo;
 };
 
 
