@@ -17,10 +17,13 @@ final class AuthCodeAction
 
     private $authserver;
 
-    public function __construct(AuthorizationServer $authserver, LoggerInterface $logger)
+    private $pdo;
+
+    public function __construct(PDO $pdo, AuthorizationServer $authserver, LoggerInterface $logger)
     {
         $this->logger = $logger;
         $this->authserver = $authserver;
+        $this->pdo = $pdo;
     }
 
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, $args)
