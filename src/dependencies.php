@@ -36,9 +36,9 @@ $container['view'] = function ($c) {
 //pdo
 $container['pdo'] = function ($c) {
     $settings = $c->get('settings')['pdo'];
-    $pdo = new PDO($settings['dsn'], $settings['username'], $settings['password'], $settings['']);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    $pdo = new PDO($settings['dsn'], $settings['username'], $settings['password'], $settings['options']);
+    $pdo->setAttribute();
+    $pdo->setAttribute();
     return $pdo;
 };
 
@@ -117,13 +117,36 @@ $container['authserver'] = function ($c) {
 // Action factories
 // -----------------------------------------------------------------------------
 $container[OAuth2Server\Actions\AuthCodeAction::class] = function ($c) {
-    return new OAuth2Server\Actions\AuthCodeAction($c->get('authserver'), $c->get('logger'));
+    return new OAuth2Server\Actions\AuthCodeAction($c->get('pdo'), $c->get('authserver'), $c->get('logger'));
 };
 
 $container[OAuth2Server\Actions\TokenAction::class] = function ($c) {
     return new OAuth2Server\Actions\TokenAction($c->get('authserver'), $c->get('logger'));
 };
 
-$container[OAuth2Server\Actions\TokenAction::class] = function ($c) {
-    return new OAuth2Server\Actions\TokenAction($c->get('logger'));
+
+
+//Repositories
+$container[OAuth2Server\Repositories\AccessTokenRepository::class] = function ($c) {
+    return new OAuth2Server\Repositories\AccessTokenRepository($c->get('pdo'),$c->get('logger'));
+};
+
+$container[OAuth2Server\Repositories\AuthCodeRepository::class] = function ($c) {
+    return new OAuth2Server\Repositories\AuthCodeRepository($c->get('pdo'),$c->get('logger'));
+};
+
+$container[OAuth2Server\Repositories\ClientRepository::class] = function ($c) {
+    return new OAuth2Server\Repositories\ClientRepository($c->get('pdo'),$c->get('logger'));
+};
+
+$container[OAuth2Server\Repositories\RefreshTokenRepository::class] = function ($c) {
+    return new OAuth2Server\Repositories\RefreshTokenRepository($c->get('pdo'),$c->get('logger'));
+};
+
+$container[OAuth2Server\Repositories\ScopeRepositoryClientRepository::class] = function ($c) {
+    return new OAuth2Server\Repositories\ScopeRepositoryClientRepository($c->get('pdo'),$c->get('logger'));
+};
+
+$container[OAuth2Server\Repositories\UserRepository::class] = function ($c) {
+    return new OAuth2Server\Repositories\UserRepository($c->get('pdo'),$c->get('logger'));
 };
