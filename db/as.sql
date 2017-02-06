@@ -13,7 +13,6 @@ CREATE TABLE `user` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL COMMENT 'Login name',
   `password` varchar(2000) NOT NULL COMMENT 'Encrypted Password',
-  `redirect_urls` varchar(2000) DEFAULT NULL COMMENT 'redirect URI or a serialiazed indexed array of redirect URIs',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 
