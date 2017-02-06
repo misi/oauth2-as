@@ -12,6 +12,7 @@ namespace OAuth2Server\Repositories;
 use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Repositories\UserRepositoryInterface;
 use OAuth2Server\Entities\UserEntity;
+use PDO;
 
 class UserRepository implements UserRepositoryInterface
 {
