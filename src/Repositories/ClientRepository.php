@@ -36,11 +36,11 @@ class ClientRepository implements ClientRepositoryInterface
 
         // Check if client is registered
 
-        $sql="SELECT `id`,
-                     `name`,
-                     `client_secret`,
-                     `redirect_uri`,
-                     `confidential`
+        $sql="SELECT `client`.`id`,
+                     `client`.`name`,
+                     `client`.`client_secret`,
+                     `client`.`redirect_uri`,
+                     `client`.`confidential`
                 FROM `client`
                 LEFT JOIN `acl` ON `client`.`id` = `acl`.`client_id`
                 WHERE `client`.`uuid`=:uuid
