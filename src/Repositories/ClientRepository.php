@@ -47,12 +47,12 @@ class ClientRepository implements ClientRepositoryInterface
         $stmt->bindParam(':uuid', $clientIdentifier, PDO::PARAM_STR);
         $stmt->execute();
 
+        $data=$stmt->fetchAll();
+        $this->logger->info("client".print_r($data,true));
+
         if ( $stmt->rowCount() != 1){
             return;
         }
-
-        $data=$stmt->fetchAll();
-        $this->logger->info("client".print_r($data,true));
 
         if (array_key_exists($clientIdentifier, $clients) === false) {
             return;
