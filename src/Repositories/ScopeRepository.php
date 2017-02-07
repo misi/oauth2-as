@@ -113,6 +113,6 @@ class ScopeRepository implements ScopeRepositoryInterface
         }
       }
 
-      return $scopes;
+      return $valid_scopes;
     }
 }
