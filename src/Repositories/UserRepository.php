@@ -38,13 +38,13 @@ class UserRepository implements UserRepositoryInterface
         ClientEntityInterface $clientEntity
     ) {
 
-        $sql="SELECT `user`.`id` AS `id`,
+        $sql='SELECT `user`.`id` AS `id`,
                      `user`.`password` AS `password`
                   FROM `acl`
                   LEFT JOIN `client` ON `client`.`id` = `acl`.`client_id`
                   LEFT JOIN `user` ON `user`.`id` = `acl`.`user_id`
                   WHERE `user`.`username` = :username
-                   AND  `client`.`id` = :client_id";
+                   AND  `client`.`id` = :client_id';
 
         $stmt=$this->pdo->prepare($sql);
         $stmt->bindParam(':username', $username, PDO::PARAM_STR);
