@@ -57,7 +57,7 @@ class ScopeRepository implements ScopeRepositoryInterface
      */
     public function finalizeScopes(
         array $scopes,
-        $grantType,
+        $grantType,/
         ClientEntityInterface $clientEntity,
         $userIdentifier = null
     ) {
@@ -85,7 +85,7 @@ class ScopeRepository implements ScopeRepositoryInterface
          $sql.=" AND `user`.`id` = :user_id";
       }
 
-      $this->logger->info("sql: ".$sql);
+      $this->logger->info("sql: ".$sql."\nclient_id: ".$clientEntity->getIdentifier()."\ngrant: ".$grantType."\nuserid: ".$userIdentifier);
 
       $stmt=$this->pdo->prepare($sql);
 
