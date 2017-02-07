@@ -53,6 +53,9 @@ class UserRepository implements UserRepositoryInterface
 
         $data=$stmt->fetch();
 
+        $this->logger->info("password:".$data['password']);
+        $this->logger->info("rowcount:".$stmt->rowCount());
+
         if ( $stmt->rowCount() != 1 ){
             return;
         }
