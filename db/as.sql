@@ -18,7 +18,7 @@ CREATE TABLE `user` (
 
 CREATE TABLE `scope` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `scope` varchar(1000) NOT NULL COMMENT 'Scope',
+  `name` varchar(1000) NOT NULL COMMENT 'Name of the scope',
   `description` varchar(2000) DEFAULT NULL COMMENT 'Description of the scope',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
