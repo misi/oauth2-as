@@ -47,7 +47,7 @@ class ScopeRepository implements ScopeRepositoryInterface
       }
 
       $scope = new ScopeEntity();
-      $scope->setIdentifier($data['id']);
+      $scope->setIdentifier($scopeIdentifier);
 
       return $scope;
     }
@@ -66,7 +66,7 @@ class ScopeRepository implements ScopeRepositoryInterface
         return;
       }
 
-      $sql="SELECT `scope`.`id`,
+      $sql="SELECT `scope`.`name`,
                    `acl_scope`.`scope_is_default`
                 FROM `acl`";
 
@@ -102,12 +102,12 @@ class ScopeRepository implements ScopeRepositoryInterface
       foreach ($result as $row) {
         if ($row['scope_is_default']) {
           $defaultscope = new ScopeEntity();
-          $defaultscope->setIdentifier($row['id']);
+          $defaultscope->setIdentifier($row['name']);
           $valid_scopes[]=$defaultscope;
           continue;
         }
         foreach ($scopes as $scope) {
-          if ($row['id'] === $scope->getIdentifier()) {
+          if ($row['name'] === $scope->getIdentifier()) {
             $valid_scopes[]=$scope;
           }
         }
