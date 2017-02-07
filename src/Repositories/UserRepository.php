@@ -37,7 +37,7 @@ class UserRepository implements UserRepositoryInterface
         $grantType,
         ClientEntityInterface $clientEntity
     ) {
-        $sql="select `user`.`id`,`user`.`password` from client where uuid=:uuid";
+        $this->logger->info("user: ".$username."\nclient_id: ". $clientEntity->getIdentifier());
         $sql='SELECT * FROM `acl`
                   LEFT JOIN `client` ON `client`.`id` = `acl`.`client_id`
                   LEFT JOIN `user` ON `user`.`id` = `acl`.`user_id`
