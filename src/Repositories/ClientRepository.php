@@ -40,8 +40,7 @@ class ClientRepository implements ClientRepositoryInterface
         $stmt->bindParam(':uuid', $clientIdentifier, PDO::PARAM_STR);
         $stmt->execute();
 
-        $data=$stmt->fetchAll();
-        $this->logger->info("client".print_r($data,true));
+        $data=$stmt->fetch();
 
         if ( $stmt->rowCount() != 1){
             return;
