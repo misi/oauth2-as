@@ -42,7 +42,7 @@ class ClientRepository implements ClientRepositoryInterface
         ];
 
         // Check if client is registered
-        $sql="select name,client_secret,redirect_urls,confidental from client where uuid=:uuid";
+        $sql="select name,client_secret,redirect_urls,confidential from client where uuid=:uuid";
         $stmt=$this->pdo->prepare($sql);
         $stmt->bindParam(':uuid', $clientIdentifier, PDO::PARAM_STR);
         $stmt->execute();
