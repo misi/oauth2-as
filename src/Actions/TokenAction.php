@@ -25,7 +25,7 @@ final class TokenAction
 
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response)
     {
-        $this->logger->info("token action dispatched);
+        $this->logger->info("token action dispatched");
         $grant_type=$request->getHeader('grant_type');
 
           try{
