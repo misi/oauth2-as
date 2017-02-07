@@ -23,7 +23,7 @@ final class TokenAction
         $this->authserver = $authserver;
     }
 
-    public function __invoke(ServerRequestInterface $request, ResponseInterface $response, $args)
+    public function __invoke(ServerRequestInterface $request, ResponseInterface $response)
     {
         $this->logger->info("token action dispatched);
         $grant_type=$request->getHeader('grant_type');
