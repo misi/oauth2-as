@@ -33,23 +33,23 @@ class ScopeRepository implements ScopeRepositoryInterface
      */
     public function getScopeEntityByIdentifier($scopeIdentifier)
     {
-        $scopes = [
-            'basic' => [
-                'description' => 'Basic details about you',
-            ],
-            'email' => [
-                'description' => 'Your email address',
-            ],
-        ];
+      $sql="SELECT `id` FROM `scope`
+                WHERE `name` = :scope";
 
-        if (array_key_exists($scopeIdentifier, $scopes) === false) {
-            return;
-        }
+      $stmt=$this->pdo->prepare($sql);
+      $stmt->bindParam(':scope', $scopeIdentifier, PDO::PARAM_STR);
+      $stmt->execute();
 
-        $scope = new ScopeEntity();
-        $scope->setIdentifier($scopeIdentifier);
+      $data=$stmt->fetch();
 
-        return $scope;
+      if ( $stmt->rowCount() != 1 ){
+          return;
+      }
+
+      $scope = new ScopeEntity();
+      $scope->setIdentifier($data['id']);
+
+      return $scope;
     }
 
     /**
@@ -61,13 +61,57 @@ class ScopeRepository implements ScopeRepositoryInterface
         ClientEntityInterface $clientEntity,
         $userIdentifier = null
     ) {
-        // Example of programatically modifying the final scope of the access token
-        if ((int) $userIdentifier === 1) {
-            $scope = new ScopeEntity();
-            $scope->setIdentifier('email');
-            $scopes[] = $scope;
-        }
+      //userIdentifier=null is only valid if grantType is client_credentials
+      if (!isset($userIdentifier) && $grantType!='client_credentials') {
+        return;
+      }
 
-        return $scopes;
+      $sql="SELECT `scope`.`id`,
+                   `acl_scope`.`scope_is_default`
+                FROM acl
+                LEFT JOIN `client` ON `client`.`id` = `acl`.`client_id`";
+
+      if ($userIdentifier) {
+           $sql.="    LEFT JOIN `user` ON `user`.`id` = `acl`.`user_id`";
+      };
+
+      $sql.="LEFT JOIN `client` ON `client`.`id` = `acl`.`client_id`
+             LEFT JOIN `acl_scope` ON `acl`.`id` = `acl_scope`.`acl_id`
+             LEFT JOIN `scope` ON `acl_scope`.`scope_id` = `scope`.`id`
+            WHERE `acl`.`grant_type` = :grant_type
+              AND `client`.`id` = :client_id";
+
+      if ($userIdentifier) {
+         $sql.=" AND `user`.`id` = :user_id";
+      }
+
+      $stmt=$this->pdo->prepare($sql);
+
+      $stmt->bindParam(':grantType', $$grantType, PDO::PARAM_STR);
+      $stmt->bindParam(':client_id', $clientEntity->getIdentifier(), PDO::PARAM_STR);
+
+      if ($userIdentifier) {
+        $stmt->bindParam(':user_id', $userIdentifier, PDO::PARAM_STR);
+      }
+
+      $stmt->execute();
+
+      $result=$stmt->fetchAll();
+
+      foreach ($result as $row) {
+        if ($row['scope_is_default']) {
+          $defaultscope = new ScopeEntity();
+          $defaultscope->setIdentifier($row['id']);
+          $scopes[]=$defaultscope;
+          continue;
+        }
+        foreach ($sopes as $scope) {
+          if ($row['id'] === $scope->getIdentifier()) {
+            $scopes[]=$scope;
+          }
+        }
+      }
+
+      return $scopes;
     }
 }
