@@ -57,7 +57,8 @@ class UserRepository implements UserRepositoryInterface
             return;
         }
 
-        $this->logger->info("password:" $data['password']);
+        $this->logger->info("password:".$data['password']);
+
         if( password_verify($password, $data['password']) === true ) {
           $user = new UserEntity();
           $user->setIdentifier($data['id']);
