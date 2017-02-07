@@ -42,6 +42,18 @@ class ClientRepository implements ClientRepositoryInterface
         ];
 
         // Check if client is registered
+        $sql="select name,client_secret,redirect_uri,confidental from client where uuid=:uuid";
+        $stmt=$this->pdo->prepare($query);
+        $stmt->bindParam(:uuid, $clientIdentifier, PDO::PARAM_STR);
+        $stmt->execute();
+
+        if ( $stmt->rowCount() != 1){
+            return;
+        }
+
+        $data=$stmt->fetchAll();
+        $this->logger->info("client".print_r($data,true));
+
         if (array_key_exists($clientIdentifier, $clients) === false) {
             return;
         }
