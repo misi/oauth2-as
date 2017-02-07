@@ -103,12 +103,12 @@ class ScopeRepository implements ScopeRepositoryInterface
         if ($row['scope_is_default']) {
           $defaultscope = new ScopeEntity();
           $defaultscope->setIdentifier($row['id']);
-          $scopes[]=$defaultscope;
+          $valid_scopes[]=$defaultscope;
           continue;
         }
-        foreach ($sopes as $scope) {
+        foreach ($scopes as $scope) {
           if ($row['id'] === $scope->getIdentifier()) {
-            $scopes[]=$scope;
+            $valid_scopes[]=$scope;
           }
         }
       }
