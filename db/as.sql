@@ -96,4 +96,4 @@ CREATE TABLE `refresh_token` (
   FOREIGN KEY (`access_token_id`) REFERENCES `access_token` (`id`)
 ) ENGINE=InnoDB;
 
-#select user.username,client.name, scope.scope from acl left join client on client.id = acl.client_id left join user on user.id = acl.user_id left join acl_scope on acl.id = acl_scope.acl_id left join scope on acl_scope.scope_id = scope.id;
+#select user.username,client.name, scope.name from acl left join client on client.id = acl.client_id left join user on user.id = acl.user_id left join acl_scope on acl.id = acl_scope.acl_id left join scope on acl_scope.scope_id = scope.id;
