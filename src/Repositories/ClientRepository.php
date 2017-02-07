@@ -36,12 +36,16 @@ class ClientRepository implements ClientRepositoryInterface
 
         // Check if client is registered
 
-        $sql="select name,client_secret,redirect_uri,confidential from client where uuid=:uuid";
+        $sql="SELECT name,client_secret,redirect_uri,confidential FROM `client` LEFT JOIN `acl` on `client`.`id` = `acl`.`client_id` WHERE `client`.`uuid`=:uuid and `acl`.`grant_type`=:grant_type";
 
         // only allow confidential clients to grant client credential
-        if ($grantType =='client_credentials') $sql.=" and confidential=1";
+        if ($grantType =='client_credentials') $sql.=" and client.confidential=1";
+
         $stmt=$this->pdo->prepare($sql);
+
         $stmt->bindParam(':uuid', $clientIdentifier, PDO::PARAM_STR);
+        $stmt->bindParam(':grant_type', $grantType, PDO::PARAM_STR);
+
         $stmt->execute();
 
         $data=$stmt->fetch();
