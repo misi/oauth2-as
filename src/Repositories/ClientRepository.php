@@ -32,17 +32,10 @@ class ClientRepository implements ClientRepositoryInterface
      */
     public function getClientEntity($clientIdentifier, $grantType, $clientSecret = null, $mustValidateSecret = true)
     {
-        $clients = [
-            'myawesomeapp' => [
-                'secret'          => password_hash('abc123', PASSWORD_BCRYPT),
-                'name'            => 'My Awesome App',
-                'redirect_uri'    => 'http://foo/bar',
-                'is_confidential' => true,
-            ],
-        ];
+
 
         // Check if client is registered
-        $sql="select name,client_secret,redirect_urls,confidential from client where uuid=:uuid";
+        $sql="select name,client_secret,redirect_uri,confidential from client where uuid=:uuid";
         $stmt=$this->pdo->prepare($sql);
         $stmt->bindParam(':uuid', $clientIdentifier, PDO::PARAM_STR);
         $stmt->execute();
@@ -54,22 +47,19 @@ class ClientRepository implements ClientRepositoryInterface
             return;
         }
 
-        if (array_key_exists($clientIdentifier, $clients) === false) {
-            return;
-        }
 
         if (
             $mustValidateSecret === true
-            && $clients[$clientIdentifier]['is_confidential'] === true
-            && password_verify($clientSecret, $clients[$clientIdentifier]['secret']) === false
+            && $data['is_confidential'] === true
+            && password_verify($clientSecret, $data['client_secret']) === false
         ) {
             return;
         }
 
         $client = new ClientEntity();
         $client->setIdentifier($clientIdentifier);
-        $client->setName($clients[$clientIdentifier]['name']);
-        $client->setRedirectUri($clients[$clientIdentifier]['redirect_uri']);
+        $client->setName($data['name']);
+        $client->setRedirectUri($data['redirect_uri']);
 
         return $client;
     }
