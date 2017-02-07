@@ -3,7 +3,7 @@ CREATE TABLE `client` (
   `uuid` varchar(255) NOT NULL COMMENT 'Client UUID / client_id',
   `name` varchar(255) NOT NULL COMMENT 'Client/App name',
   `client_secret` varchar(2000) DEFAULT NULL COMMENT 'Encrypted Client Secret',
-  `redirect_urls` varchar(2000) DEFAULT NULL COMMENT 'redirect URI or a serialiazed indexed array of redirect URIs',
+  `redirect_uri` varchar(2000) DEFAULT NULL COMMENT 'redirect URI',
   `confidential` BOOLEAN NOT NULL DEFAULT 0 COMMENT 'Confidential client (could store secret)',
   PRIMARY KEY (`id`),
   UNIQUE KEY `uuid` (`uuid`)
