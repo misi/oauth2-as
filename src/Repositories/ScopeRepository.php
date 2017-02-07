@@ -68,8 +68,7 @@ class ScopeRepository implements ScopeRepositoryInterface
 
       $sql="SELECT `scope`.`id`,
                    `acl_scope`.`scope_is_default`
-                FROM `acl`
-                LEFT JOIN `client` ON `client`.`id` = `acl`.`client_id`";
+                FROM `acl`";
 
       if ($userIdentifier) {
            $sql.="    LEFT JOIN `user` ON `user`.`id` = `acl`.`user_id`";
