@@ -25,7 +25,7 @@ final class TokenAction
 
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response)
     {
-        $this->logger->info("token action dispatched".print_r($this->authserver,true));
+        $this->logger->info("token action dispatched");
 
 
           try{
