@@ -36,7 +36,7 @@ class ClientRepository implements ClientRepositoryInterface
 
         // Check if client is registered
 
-        $sql="SELECT `client`.`id`,
+        $sql='SELECT `client`.`id`,
                      `client`.`name`,
                      `client`.`client_secret`,
                      `client`.`redirect_uri`,
@@ -44,7 +44,7 @@ class ClientRepository implements ClientRepositoryInterface
                 FROM `client`
                 LEFT JOIN `acl` ON `client`.`id` = `acl`.`client_id`
                 WHERE `client`.`uuid`=:uuid
-                  AND `acl`.`grant_type`=:grant_type";
+                  AND `acl`.`grant_type`=:grant_type';
 
         // only allow confidential clients to grant client credential
         if ($grantType =='client_credentials') $sql.=" and client.confidential=1";
@@ -61,7 +61,7 @@ class ClientRepository implements ClientRepositoryInterface
         if ( $stmt->rowCount() != 1){
             return;
         }
-        
+
         if (
             $mustValidateSecret === true
             && $data['confidential'] == 1
