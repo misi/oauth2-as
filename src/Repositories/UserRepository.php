@@ -53,6 +53,8 @@ class UserRepository implements UserRepositoryInterface
 
         $data=$stmt->fetch();
 
+        $this->logger->info("client_id:".$clientEntity->getIdentifier());
+
         $this->logger->info("password:".$data['password']);
         $this->logger->info("rowcount:".$stmt->rowCount());
 
