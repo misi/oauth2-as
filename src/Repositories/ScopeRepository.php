@@ -57,7 +57,7 @@ class ScopeRepository implements ScopeRepositoryInterface
      */
     public function finalizeScopes(
         array $scopes,
-        $grantType,/
+        $grantType,
         ClientEntityInterface $clientEntity,
         $userIdentifier = null
     ) {
