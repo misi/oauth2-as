@@ -49,7 +49,7 @@ class ClientRepository implements ClientRepositoryInterface
 
         if (
             $mustValidateSecret === true
-            && $data['is_confidential'] === true
+            && $data['confidential'] === true
             && password_verify($clientSecret, $data['client_secret']) === false
         ) {
             return;
