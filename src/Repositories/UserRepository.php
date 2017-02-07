@@ -58,7 +58,7 @@ class UserRepository implements UserRepositoryInterface
 
         if( password_verify($password, $data['password']) === true ) {
           $user = new UserEntity();
-          $user->setIdentity($data['id']);
+          $user->setIdentifier($data['id']);
           return $user;
         }
 
