@@ -27,7 +27,7 @@ CREATE TABLE `acl` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `client_id` bigint(20) unsigned NOT NULL,
   `user_id` bigint(20) unsigned NOT NULL,
-  `grant_type` ENUM('authorization_code','client_credentials','password','implicit') NOT NULL COMMENT 'Grant Type',
+  `grant_type` ENUM('authorization_code','client_credentials','password','implicit','refresh_token') NOT NULL COMMENT 'Grant Type',
   PRIMARY KEY (`id`),
   FOREIGN KEY (`client_id`) REFERENCES `client` (`id`),
   FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
