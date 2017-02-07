@@ -36,7 +36,15 @@ class ClientRepository implements ClientRepositoryInterface
 
         // Check if client is registered
 
-        $sql="SELECT name,client_secret,redirect_uri,confidential FROM `client` LEFT JOIN `acl` on `client`.`id` = `acl`.`client_id` WHERE `client`.`uuid`=:uuid and `acl`.`grant_type`=:grant_type";
+        $sql="SELECT `id`,
+                     `name`,
+                     `client_secret`,
+                     `redirect_uri`,
+                     `confidential`
+                FROM `client`
+                LEFT JOIN `acl` ON `client`.`id` = `acl`.`client_id`
+                WHERE `client`.`uuid`=:uuid
+                  AND `acl`.`grant_type`=:grant_type";
 
         // only allow confidential clients to grant client credential
         if ($grantType =='client_credentials') $sql.=" and client.confidential=1";
@@ -63,7 +71,7 @@ class ClientRepository implements ClientRepositoryInterface
         }
 
         $client = new ClientEntity();
-        $client->setIdentifier($clientIdentifier);
+        $client->setIdentifier($data['id']);
         $client->setName($data['name']);
         $client->setRedirectUri($data['redirect_uri']);
 
