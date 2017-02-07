@@ -38,7 +38,9 @@ class UserRepository implements UserRepositoryInterface
         ClientEntityInterface $clientEntity
     ) {
 
-        $sql="SELECT * FROM `acl`
+        $sql="SELECT `user`.`id`,
+                     `user`.`password`,
+                  FROM `acl`
                   LEFT JOIN `client` ON `client`.`id` = `acl`.`client_id`
                   LEFT JOIN `user` ON `user`.`id` = `acl`.`user_id`
                   WHERE `user`.`username` = :username
