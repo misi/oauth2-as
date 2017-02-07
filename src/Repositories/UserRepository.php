@@ -37,8 +37,27 @@ class UserRepository implements UserRepositoryInterface
         $grantType,
         ClientEntityInterface $clientEntity
     ) {
-        if ($username === 'alex' && $password === 'whisky') {
-            return new UserEntity();
+        $sql="select `user`.`id`,`user`.`password` from client where uuid=:uuid";
+        $sql='SELECT * FROM `acl`
+                  LEFT JOIN `client` ON `client`.`id` = `acl`.`client_id`
+                  LEFT JOIN `user` ON `user`.`id` = `acl`.`user_id`
+                  WHERE `user`.`username` = :username
+                   AND  `client`.`id` = :client_id';
+        $stmt=$this->pdo->prepare($sql);
+        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+        $stmt->bindParam(':client_id', $clientEntity->getIdentifier(), PDO::PARAM_STR);
+        $stmt->execute();
+
+        $data=$stmt->fetch();
+
+        if ( $stmt->rowCount() != 1 ){
+            return;
+        }
+
+        if( password_verify($password, $data['password']) === true ) {
+          $user = new UserEntity();
+          $user->setIdentity($data['id']);
+          return $user;
         }
 
         return;
