@@ -85,6 +85,8 @@ class ScopeRepository implements ScopeRepositoryInterface
          $sql.=" AND `user`.`id` = :user_id";
       }
 
+      $this->logger->info("sql: ".$sql);
+
       $stmt=$this->pdo->prepare($sql);
 
       $stmt->bindParam(':grant_type', $grantType, PDO::PARAM_STR);
