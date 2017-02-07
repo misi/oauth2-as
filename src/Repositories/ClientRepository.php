@@ -46,10 +46,10 @@ class ClientRepository implements ClientRepositoryInterface
         if ( $stmt->rowCount() != 1){
             return;
         }
-
+        $this->logger-info("misi: "$data['confidential']."\n".$data['client_secret']."\n".password_verify($clientSecret, $data['client_secret']));
         if (
             $mustValidateSecret === true
-            && $data['confidential'] === 1
+            && $data['confidential'] == 1
             && password_verify($clientSecret, $data['client_secret']) === false
         ) {
             return;
