@@ -26,7 +26,7 @@ CREATE TABLE `scope` (
 CREATE TABLE `acl` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `client_id` bigint(20) unsigned NOT NULL,
-  `user_id` bigint(20) unsigned NOT NULL,
+  `user_id` bigint(20) unsigned DEFAULT NULL,
   `grant_type` ENUM('authorization_code','client_credentials','password','implicit','refresh_token') NOT NULL COMMENT 'Grant Type',
   PRIMARY KEY (`id`),
   FOREIGN KEY (`client_id`) REFERENCES `client` (`id`),
