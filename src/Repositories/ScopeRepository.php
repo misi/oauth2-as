@@ -61,8 +61,8 @@ class ScopeRepository implements ScopeRepositoryInterface
         ClientEntityInterface $clientEntity,
         $userIdentifier = null
     ) {
-      //userIdentifier=null is only valid if grantType is client_credentials
-      if (!isset($userIdentifier) && $grantType!='client_credentials') {
+      //userIdentifier=null is only valid if grantType is client_credentials or implicit
+      if (!isset($userIdentifier) && ($grantType!='client_credentials' || $grantType!='implicit')) {
         return;
       }
 
