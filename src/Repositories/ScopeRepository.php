@@ -62,7 +62,7 @@ class ScopeRepository implements ScopeRepositoryInterface
         $userIdentifier = null
     ) {
       //userIdentifier=null is only valid if grantType is client_credentials or implicit
-      if (!isset($userIdentifier) && ($grantType!='client_credentials' || $grantType!='implicit')) {
+      if (!isset($userIdentifier) && $grantType!='client_credentials' && $grantType!='implicit') {
         return;
       }
 
