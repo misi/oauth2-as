@@ -113,7 +113,7 @@ class ScopeRepository implements ScopeRepositoryInterface
         }
       }
 
-      $this->logger->info("Valid_Scopes: ".print_r($valid_scopes,true));
+      $this->logger->info("Valid_Scopes: ".array_values($valid_scopes));
 
       return $valid_scopes;
     }
