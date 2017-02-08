@@ -2,10 +2,8 @@
 // Routes
 
 //GET
-$app->get('/auth', OAuth2Server\Actions\AuthCodeAction::class);
+$app->get('/authorize', OAuth2Server\Actions\AuthCodeAction::class);
 
-// POST
-$app->post('/auth', OAuth2Server\Actions\AuthCodeAction::class);
-
-$app->post('/token', OAuth2Server\Actions\TokenAction::class)
+//POST
+$app->post('/access_token', OAuth2Server\Actions\TokenAction::class)
     ->setName('token');
