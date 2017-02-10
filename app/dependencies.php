@@ -13,6 +13,7 @@ use League\OAuth2\Server\Grant\ClientCredentialsGrant;
 use League\OAuth2\Server\Grant\ImplicitGrant;
 use League\OAuth2\Server\Grant\PasswordGrant;
 use League\OAuth2\Server\Grant\RefreshTokenGrant;
+use Slim\Views\Twig;
 
 // DIC configuration
 $container = $app->getContainer();
@@ -24,7 +25,7 @@ $container = $app->getContainer();
 // Twig
 $container['view'] = function ($c) {
     $settings = $c->get('settings');
-    $view = new Slim\Views\Twig($settings['view']['template_path'], $settings['view']['twig']);
+    $view = new Twig($settings['view']['template_path'], $settings['view']['twig']);
     // Add extensions
     $view->addExtension(new Slim\Views\TwigExtension($c->get('router'), $c->get('request')->getUri()));
     $view->addExtension(new Twig_Extension_Debug());
@@ -48,11 +49,15 @@ $container['logger'] = function ($c) {
     return $logger;
 };
 
+// UserRepository
+$container['userrepository'] = function ($c) {
+      return new UserRepository($c->get('pdo'), $c->get('logger'));
+}
 $container['authserver'] = function ($c) {
     $settings = $c->get('settings')['authserver'];
 
     // Init our repositories
-    $userRepository = new UserRepository($c->get('pdo'), $c->get('logger'));
+    $userRepository = $c->get('userrepository');
     $clientRepository = new ClientRepository($c->get('pdo'), $c->get('logger'));
     $scopeRepository = new ScopeRepository($c->get('pdo'), $c->get('logger'));
     $authCodeRepository = new AuthCodeRepository($c->get('pdo'), $c->get('logger'));
@@ -113,7 +118,7 @@ $container['authserver'] = function ($c) {
 // Action factories
 // -----------------------------------------------------------------------------
 $container[OAuth2Server\Actions\AuthCodeAction::class] = function ($c) {
-    return new OAuth2Server\Actions\AuthCodeAction($c->get('pdo'), $c->get('authserver'), $c->get('logger'));
+    return new OAuth2Server\Actions\AuthCodeAction($c->get('userrepository'), $c->get('authserver'), $c->get('logger'), $c->get('view'));
 };
 
 $container[OAuth2Server\Actions\TokenAction::class] = function ($c) {

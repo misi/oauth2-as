@@ -4,6 +4,16 @@ return [
         // Slim Settings
         'displayErrorDetails' => true, // set to false in production
 
+        // View settings
+        'view' => [
+            'template_path' => __DIR__ . '/templates',
+            'twig' => [
+                'cache' => __DIR__ . '/../cache/twig',
+                'debug' => true,
+                'auto_reload' => true,
+            ],
+        ],
+
         // database settings
         'pdo' => [
             'dsn' => 'mysql:host=localhost;dbname=as;charset=utf8mb4;collation=utf8mb4_unicode_ci',
@@ -13,11 +23,6 @@ return [
                           PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                           PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
                         ],
-        ],
-
-        // Renderer settings
-        'renderer' => [
-            'template_path' => __DIR__ . '/../templates/',
         ],
 
         // Monolog settings

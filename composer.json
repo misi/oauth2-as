@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "OAuth2Server\\": "src/"
+            "OAuth2Server\\": "app/"
         }
     }
 }
