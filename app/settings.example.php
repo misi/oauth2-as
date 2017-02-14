@@ -31,5 +31,12 @@ return [
             'path' => isset($_ENV['docker']) ? 'php://stdout' : __DIR__ . '/../logs/app.log',
             'level' => \Monolog\Logger::DEBUG,
         ],
+
+        // Session Settings
+        'session' => [
+            'name' => 'session',
+            'autorefresh' => true,
+            'lifetime' => '1 hour'
+        ],
     ],
 ];
