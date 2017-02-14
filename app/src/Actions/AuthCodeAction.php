@@ -16,9 +16,9 @@ use Psr\Log\LoggerInterface;
 
 use Slim\Views\Twig;
 
-use \SlimSession\Helper;
+use SlimSession\Helper;
 
-use \Slim\Csrf\Guard;
+use Slim\Csrf\Guard;
 
 final class AuthCodeAction
 {

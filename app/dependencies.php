@@ -25,7 +25,7 @@ $container = $app->getContainer();
 
 // CSRF
 $container['csrf'] = function ($c) {
-    return new \Slim\Csrf\Guard;
+    return new Slim\Csrf\Guard;
 };
 
 // Twig
