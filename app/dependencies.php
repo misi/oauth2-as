@@ -23,6 +23,11 @@ $container = $app->getContainer();
 // Service providers
 // -----------------------------------------------------------------------------
 
+// CSRF
+$container['csrf'] = function ($c) {
+    return new \Slim\Csrf\Guard;
+};
+
 // Twig
 $container['view'] = function ($c) {
     $settings = $c->get('settings');
@@ -125,7 +130,7 @@ $container['authserver'] = function ($c) {
 // Action factories
 // -----------------------------------------------------------------------------
 $container[OAuth2Server\Actions\AuthCodeAction::class] = function ($c) {
-    return new OAuth2Server\Actions\AuthCodeAction($c->get('userrepository'), $c->get('authserver'), $c->get('logger'), $c->get('view'), $c->get('session'));
+    return new OAuth2Server\Actions\AuthCodeAction($c->get('userrepository'), $c->get('authserver'), $c->get('logger'), $c->get('view'), $c->get('session'), $c->get('csrf'));
 };
 
 $container[OAuth2Server\Actions\TokenAction::class] = function ($c) {
