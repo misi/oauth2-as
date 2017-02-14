@@ -17,6 +17,9 @@ class ClientEntity implements ClientEntityInterface
 {
     use EntityTrait, ClientTrait;
 
+    private publicID;
+    private description;
+
     public function setName($name)
     {
         $this->name = $name;
@@ -25,5 +28,25 @@ class ClientEntity implements ClientEntityInterface
     public function setRedirectUri($uri)
     {
         $this->redirectUri = $uri;
+    }
+
+    public function setPublicID($publicID)
+    {
+        $this->publicID = $publicID;
+    }
+
+    public function getPublicID()
+    {
+        return $this->publicID;
+    }
+
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    public function getDescription()
+    {
+        return $this->description;
     }
 }
