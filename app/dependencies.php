@@ -14,7 +14,6 @@ use League\OAuth2\Server\Grant\ImplicitGrant;
 use League\OAuth2\Server\Grant\PasswordGrant;
 use League\OAuth2\Server\Grant\RefreshTokenGrant;
 use Slim\Views\Twig;
-use Slim\Csrf\Guard;
 
 // DIC configuration
 $container = $app->getContainer();
@@ -22,11 +21,6 @@ $container = $app->getContainer();
 // -----------------------------------------------------------------------------
 // Service providers
 // -----------------------------------------------------------------------------
-
-// CSRF
-$container['csrf'] = function ($c) {
-    return new Guard;
-};
 
 // Twig
 $container['view'] = function ($c) {
@@ -129,14 +123,13 @@ $container['authserver'] = function ($c) {
 // -----------------------------------------------------------------------------
 // Action factories
 // -----------------------------------------------------------------------------
-$container[OAuth2Server\Actions\AuthCodeAction::class] = function ($c) {
-    return new OAuth2Server\Actions\AuthCodeAction($c->get('userrepository'), $c->get('authserver'), $c->get('logger'), $c->get('view'), $c->get('session'));
-};
-
 $container[OAuth2Server\Actions\TokenAction::class] = function ($c) {
     return new OAuth2Server\Actions\TokenAction($c->get('authserver'), $c->get('logger'));
 };
 
+$container[OAuth2Server\Actions\AuthCodeAction::class] = function ($c) {
+    return new OAuth2Server\Actions\AuthCodeAction($c->get('userrepository'), $c->get('authserver'), $c->get('logger'), $c->get('view'), $c->get('session'));
+};
 
 //Repositories
 $container[OAuth2Server\Repositories\AccessTokenRepository::class] = function ($c) {
