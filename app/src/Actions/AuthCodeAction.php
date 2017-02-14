@@ -16,7 +16,9 @@ use Psr\Log\LoggerInterface;
 
 use Slim\Views\Twig;
 
-use \SlimSession\Helper;
+use SlimSession\Helper;
+
+use Slim\Csrf\Guard;
 
 final class AuthCodeAction
 {
@@ -30,13 +32,16 @@ final class AuthCodeAction
 
     private $session;
 
-    public function __construct(UserRepositoryInterface $userrepository, AuthorizationServer $authserver, LoggerInterface $logger, TWIG $view, Helper $session)
+    private $csrf;
+
+    public function __construct(UserRepositoryInterface $userrepository, AuthorizationServer $authserver, LoggerInterface $logger, TWIG $view, Helper $session, Guard $csrf)
     {
         $this->logger = $logger;
         $this->authserver = $authserver;
         $this->userrepository = $userrepository;
         $this->view = $view;
         $this->session = $session;
+        $this->csrf = $csrf;
     }
 
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, $args)
