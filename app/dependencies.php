@@ -37,6 +37,7 @@ $container['view'] = function ($c) {
 $container['session'] = function ($c) {
     return new SlimSession\Helper;
 }
+
 //pdo
 $container['pdo'] = function ($c) {
     $settings = $c->get('settings')['pdo'];
