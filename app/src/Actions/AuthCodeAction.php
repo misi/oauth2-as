@@ -49,8 +49,7 @@ final class AuthCodeAction
             $phpAuthUser=$request->getServerParams()['PHP_AUTH_USER'];
             print_r($phpAuthUser);
             if (!isset($phpAuthUser)) {
-                $response->withHeader('WWW-Authenticate','Basic realm="OAUTH"');
-                return $response->withStatus(401,'Unauthorized');
+                return $response->withHeader('WWW-Authenticate','Basic realm="OAUTH"')->withStatus(401,'Unauthorized');
             }
 
             // Validate the HTTP request and return an AuthorizationRequest object.
