@@ -17,8 +17,8 @@ class ClientEntity implements ClientEntityInterface
 {
     use EntityTrait, ClientTrait;
 
-    private publicID;
-    private description;
+    private $publicID;
+    private $description;
 
     public function setName($name)
     {
