@@ -130,7 +130,7 @@ $container['authserver'] = function ($c) {
 // Action factories
 // -----------------------------------------------------------------------------
 $container[OAuth2Server\Actions\AuthCodeAction::class] = function ($c) {
-    return new OAuth2Server\Actions\AuthCodeAction($c->get('userrepository'), $c->get('authserver'), $c->get('logger'), $c->get('view'), $c->get('session'), $c->get('csrf'));
+    return new OAuth2Server\Actions\AuthCodeAction($c->get('userrepository'), $c->get('authserver'), $c->get('logger'), $c->get('view'), $c->get('session'));
 };
 
 $container[OAuth2Server\Actions\TokenAction::class] = function ($c) {
