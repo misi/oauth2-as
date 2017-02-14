@@ -4,4 +4,4 @@
 $app->add(new \Slim\Csrf\Guard);
 
 // Session
-$app->add(new \Slim\Middleware\Session($app->settings['session']));
+$app->add(new \Slim\Middleware\Session($container->get('settings')['session']));
