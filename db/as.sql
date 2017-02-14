@@ -1,6 +1,6 @@
 CREATE TABLE `client` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `uuid` varchar(255) NOT NULL COMMENT 'Client UUID / client_id',
+  `public_id` varchar(255) NOT NULL COMMENT 'Client UUID / client_id',
   `name` varchar(255) NOT NULL COMMENT 'Client/App name',
   `description` varchar(6000) NOT NULL COMMENT 'Client/App description',
   `client_secret` varchar(2000) DEFAULT NULL COMMENT 'Encrypted Client Secret',
