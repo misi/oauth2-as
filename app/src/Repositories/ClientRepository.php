@@ -73,7 +73,7 @@ class ClientRepository implements ClientRepositoryInterface
 
         $client = new ClientEntity();
         $client->setIdentifier($data['id']);
-        $client->setClientID($data['public_id']);
+        $client->setPublicID($data['public_id']);
         $client->setName($data['name']);
         $client->setDescription($data['description']);
         $client->setRedirectUri($data['redirect_uri']);
