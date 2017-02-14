@@ -15,6 +15,7 @@ use League\OAuth2\Server\Grant\PasswordGrant;
 use League\OAuth2\Server\Grant\RefreshTokenGrant;
 use Slim\Views\Twig;
 
+
 // DIC configuration
 $container = $app->getContainer();
 
@@ -32,6 +33,10 @@ $container['view'] = function ($c) {
     return $view;
 };
 
+// session
+$container['session'] = function ($c) {
+    return new SlimSession\Helper;
+}
 //pdo
 $container['pdo'] = function ($c) {
     $settings = $c->get('settings')['pdo'];
@@ -118,7 +123,7 @@ $container['authserver'] = function ($c) {
 // Action factories
 // -----------------------------------------------------------------------------
 $container[OAuth2Server\Actions\AuthCodeAction::class] = function ($c) {
-    return new OAuth2Server\Actions\AuthCodeAction($c->get('userrepository'), $c->get('authserver'), $c->get('logger'), $c->get('view'));
+    return new OAuth2Server\Actions\AuthCodeAction($c->get('userrepository'), $c->get('authserver'), $c->get('logger'), $c->get('view'), $c->get('session'));
 };
 
 $container[OAuth2Server\Actions\TokenAction::class] = function ($c) {
