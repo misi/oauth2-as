@@ -52,7 +52,6 @@ final class AuthCodeAction
                 $response->withStatus(401);
             }
 
-            if (('response_type')==code) {
             // Validate the HTTP request and return an AuthorizationRequest object.
             // The auth request object can be serialized into a user's session
             $authRequest = $this->authserver->validateAuthorizationRequest($request);
