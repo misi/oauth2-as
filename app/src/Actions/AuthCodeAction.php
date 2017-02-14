@@ -49,7 +49,7 @@ final class AuthCodeAction
             $phpAuthUser=$request->getServerParams()['PHP_AUTH_USER'];
             print_r($phpAuthUser);
             if (!isset($phpAuthUser)) {
-                $response->withHeader('WWW-Authenticate: Basic realm="OAUTH"');
+                $response->withHeader('WWW-Authenticate','Basic realm="OAUTH"');
                 $response->withStatus(401);
                 return $response;
             }
