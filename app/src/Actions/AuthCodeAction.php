@@ -74,6 +74,7 @@ final class AuthCodeAction
 				                  'client_name' => $authRequest->getClient()->getName(),
 					                'client_description' => $authRequest->getClient()->getDescription()
 				        ]);
+                return $response;
             } else {
 
               // extract authRequest from session
