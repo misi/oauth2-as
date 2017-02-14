@@ -19,6 +19,7 @@ class ClientEntity implements ClientEntityInterface
 
     private $publicID;
     private $description;
+    private $confidential;
 
     public function setName($name)
     {
@@ -49,4 +50,15 @@ class ClientEntity implements ClientEntityInterface
     {
         return $this->description;
     }
+
+    public function setConfidential($confidential)
+    {
+        $this->confidential = $confidential;
+    }
+
+    public function getConfidential()
+    {
+        return $this->confidential;
+    }
+
 }
