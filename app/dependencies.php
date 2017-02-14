@@ -58,7 +58,8 @@ $container['logger'] = function ($c) {
 // UserRepository
 $container['userrepository'] = function ($c) {
       return new UserRepository($c->get('pdo'), $c->get('logger'));
-}
+};
+
 $container['authserver'] = function ($c) {
     $settings = $c->get('settings')['authserver'];
 
