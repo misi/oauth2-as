@@ -51,6 +51,7 @@ final class AuthCodeAction
             if (!isset($phpAuthUser)) {
                 $response->withHeader('WWW-Authenticate: Basic realm="OAUTH"');
                 $response->withStatus(401);
+                return $response;
             }
 
             // Validate the HTTP request and return an AuthorizationRequest object.
