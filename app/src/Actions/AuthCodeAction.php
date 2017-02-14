@@ -47,7 +47,7 @@ final class AuthCodeAction
 
             // If user is not authenticated
             $phpAuthUser=$request->getServerParams()['PHP_AUTH_USER'];
-            print_r($phpAuthUser);
+
             if (!isset($phpAuthUser)) {
                 return $response->withHeader('WWW-Authenticate','Basic realm="OAUTH"')->withStatus(401,'Unauthorized');
             }
@@ -58,8 +58,8 @@ final class AuthCodeAction
 
             if (!isset($this->session->authRequest)){
                 $user=$this->userrepository->getUserEntityByUserCredentials(
-                    $request->getServerParams('PHP_AUTH_USER'),
-                    $request->getServerParams('PHP_AUTH_PW'),
+                    $request->getServerParams()['PHP_AUTH_USER'],
+                    $request->getServerParams()['PHP_AUTH_PW'],
                     $authRequest->getGrantTypeId(),
                     $authRequest->getClient()
                 );
