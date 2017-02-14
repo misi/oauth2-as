@@ -46,7 +46,7 @@ final class AuthCodeAction
         try {
 
             // If user is not authenticated
-            $phpAuthUser=$request->getServerParams('PHP_AUTH_USER');
+            $phpAuthUser=$request->getServerParams()['PHP_AUTH_USER'];
             print_r($phpAuthUser);
             if (!isset($phpAuthUser)) {
                 $response->withHeader('WWW-Authenticate: Basic realm="OAUTH"');
