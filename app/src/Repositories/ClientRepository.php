@@ -41,7 +41,7 @@ class ClientRepository implements ClientRepositoryInterface
                      `client`.`name`,
                      `client`.`client_secret`,
                      `client`.`redirect_uri`,
-                     `client`.`confidential`
+                     `client`.`confidential`,
                      `client`.`description`
                 FROM `acl`
                 LEFT JOIN `client` ON `client`.`id` = `acl`.`client_id`
