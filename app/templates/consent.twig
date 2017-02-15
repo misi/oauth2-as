@@ -11,18 +11,32 @@
 
 <div class="container-fluid">
   <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-10"></div>
-      <div class="col-md-1"></div>
-  </div>
-
-  <div class="row">
-      <div class="col-md-2"></div>
-      <div class="col-md-7">
-        <h1>Main Title</h1>
-        <h2>Sub title</h2>
+      <div class="col-md-3">
+          <h2>Welcome to the OAuth2.0 Server!</h2>
       </div>
-      <div class="col-md-3"></div>
+  </div>
+  <div class="row">
+      <div class="col-md-7">
+          <p>You have been sent here by <strong>{{client_public_id}}</strong>. {{client_public_id}} would like to grant <p>
+          <p>Client Name: {{client_name}}</p>
+          <p>Client Description: {{client_description}}</p>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+        <div class>
+        <form action="" method="post">
+            <button type="button" class="btn btn-primary btn-success btn-lg">Yes, I Authorize This Request</button>
+            <input type="hidden" name="authorize" value="1" />
+        </form>
+    </div>
+    <div class="col-md-3">
+          <div class>
+          <form action="" method="post">
+              <button type="button" class="btn btn-primary btn-danger btn-lg">Yes, I Authorize This Request</button>
+              <input type="hidden" name="authorize" value="0" />
+          </form>
+      </div>
   </div>
 </div>
 
