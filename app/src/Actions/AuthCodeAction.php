@@ -84,12 +84,14 @@ final class AuthCodeAction
 
                   // Once the user has approved or denied the client update the status
                   // (true = approved, false = denied)
-                  $authRequest->setAuthorizationApproved(true);                
+                  $authRequest->setAuthorizationApproved(true);
+
               } else {
 
                   // Once the user has approved or denied the client update the status
                   // (true = approved, false = denied)
                   $authRequest->setAuthorizationApproved(false);
+                  
               }
 
               // remove redis
