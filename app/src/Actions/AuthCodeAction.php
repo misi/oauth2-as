@@ -68,7 +68,7 @@ final class AuthCodeAction
 
                 $this->session->authRequest=serialize($authRequest);
                 $this->view->render($response, 'consent.twig', [
-                          'client_public_id' => $authRequest->getClient()->getPublicID(),
+                          'client_public_id' => $authRequest->getClient()->getIdentifier(),
 				                  'client_name' => $authRequest->getClient()->getName(),
 					                'client_description' => $authRequest->getClient()->getDescription()
 				        ]);

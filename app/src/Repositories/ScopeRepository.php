@@ -90,7 +90,7 @@ class ScopeRepository implements ScopeRepositoryInterface
       $stmt=$this->pdo->prepare($sql);
 
       $stmt->bindParam(':grant_type', $grantType, PDO::PARAM_STR);
-      $stmt->bindParam(':client_id', $clientEntity->getIdentifier(), PDO::PARAM_INT);
+      $stmt->bindParam(':client_id', $clientEntity->getInternalID(), PDO::PARAM_INT);
 
       if ($userIdentifier) {
         $stmt->bindParam(':user_id', $userIdentifier, PDO::PARAM_INT);

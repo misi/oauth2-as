@@ -49,7 +49,7 @@ class UserRepository implements UserRepositoryInterface
 
         $stmt=$this->pdo->prepare($sql);
         $stmt->bindParam(':username', $username, PDO::PARAM_STR);
-        $stmt->bindParam(':client_id', $clientEntity->getIdentifier(), PDO::PARAM_STR);
+        $stmt->bindParam(':client_id', $clientEntity->getInternalID(), PDO::PARAM_STR);
         $stmt->bindParam(':grant_type', $grantType, PDO::PARAM_STR);
         $stmt->execute();
 

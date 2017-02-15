@@ -17,7 +17,7 @@ class ClientEntity implements ClientEntityInterface
 {
     use EntityTrait, ClientTrait;
 
-    private $publicID;
+    private $InternalID;
     private $description;
     private $confidential;
 
@@ -31,14 +31,14 @@ class ClientEntity implements ClientEntityInterface
         $this->redirectUri = $uri;
     }
 
-    public function setPublicID($publicID)
+    public function setInternalID($internalID)
     {
-        $this->publicID = $publicID;
+        $this->internalID = $internalID;
     }
 
-    public function getPublicID()
+    public function getInternalID()
     {
-        return $this->publicID;
+        return $this->InternalID;
     }
 
     public function setDescription($description)
