@@ -94,7 +94,8 @@ final class AuthCodeAction
 
               // remove redis
               $this->session->delete('authRequest');
-
+              print_r($authRequest);
+              exit;
               // Return the HTTP redirect response
               return $this->authserver->completeAuthorizationRequest($authRequest, $response);
             }
