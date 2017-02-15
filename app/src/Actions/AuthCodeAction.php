@@ -85,6 +85,9 @@ final class AuthCodeAction
                   // Once the user has approved or denied the client update the status
                   // (true = approved, false = denied)
                   $authRequest->setAuthorizationApproved(true);
+                  echo "misi";
+                  $this->session->delete('authRequest');
+                  exit;
               } else {
 
                   // Once the user has approved or denied the client update the status
@@ -94,8 +97,7 @@ final class AuthCodeAction
 
               // remove redis
               $this->session->delete('authRequest');
-              print_r($authRequest);
-              exit;
+
               // Return the HTTP redirect response
               return $this->authserver->completeAuthorizationRequest($authRequest, $response);
             }
