@@ -61,9 +61,10 @@ class ScopeRepository implements ScopeRepositoryInterface
         ClientEntityInterface $clientEntity,
         $userIdentifier = null
     ) {
+
       //userIdentifier=null is only valid if grantType is client_credentials or implicit
       if (!isset($userIdentifier) && $grantType!='client_credentials' && $grantType!='implicit') {
-        return array();
+        return;
       }
 
       $sql="SELECT `scope`.`name`,
@@ -98,6 +99,9 @@ class ScopeRepository implements ScopeRepositoryInterface
       $stmt->execute();
 
       $result=$stmt->fetchAll();
+
+      //default empty result
+      $valid_scopes=array();
 
       foreach ($result as $row) {
         if ($row['scope_is_default']) {
