@@ -84,10 +84,7 @@ final class AuthCodeAction
 
                   // Once the user has approved or denied the client update the status
                   // (true = approved, false = denied)
-                  $authRequest->setAuthorizationApproved(true);
-                  echo "misi";
-                  $this->session->delete('authRequest');
-                  exit;
+                  $authRequest->setAuthorizationApproved(true);                
               } else {
 
                   // Once the user has approved or denied the client update the status
