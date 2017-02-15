@@ -3,42 +3,40 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport"
-     content="width=device-width, initial-scale=1, user-scalable=yes">
+    content="width=device-width, initial-scale=1, user-scalable=yes">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
 
-<div class="container-fluid">
-  <div class="row">
+  <div class="container-fluid">
+    <div class="row">
       <div class="col-md-3">
-          <h2>Welcome to the OAuth2.0 Server!</h2>
+        <h2>Welcome to the OAuth2.0 Server!</h2>
       </div>
-  </div>
-  <div class="row">
-      <div class="col-md-7">
-          <p>You have been sent here by <strong>{{client_public_id}}</strong>. {{client_public_id}} would like to grant <p>
-          <p>Client Name: {{client_name}}</p>
-          <p>Client Description: {{client_description}}</p>
-      </div>
-  </div>
-  <div class="row">
-    <div class="col-md-3">
-        <div class>
-        <form action="" method="post">
-            <button type="submit" class="btn btn-primary btn-success">Yes, I Authorize This Request</button>
-            <input type="hidden" name="authorized" value="true" />
-        </form>
     </div>
-    <div class="col-md-3">
-          <div class>
-          <form action="" method="post">
-              <button type="submit" class="btn btn-primary btn-danger">No, I do NOT Authorize This Request</button>
-              <input type="hidden" name="authorized" value="false" />
-          </form>
+    <div class="row">
+      <div class="col-md-7">
+        <p>You have been sent here by <strong>{{client_public_id}}</strong>. {{client_public_id}} would like to grant <p>
+        <p>Client Name: {{client_name}}</p>
+        <p>Client Description: {{client_description}}</p>
       </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <form action="" method="post">
+          <button type="submit" class="btn btn-primary btn-success">Yes, I Authorize This Request</button>
+          <input type="hidden" name="authorized" value="true" />
+        </form>
+      </div>
+      <div class="col-md-3">
+        <form action="" method="post">
+          <button type="submit" class="btn btn-primary btn-danger">No, I do NOT Authorize This Request</button>
+          <input type="hidden" name="authorized" value="false" />
+        </form>
+      </div>
+    </div>
   </div>
-</div>
 
 </body>
 </html>
