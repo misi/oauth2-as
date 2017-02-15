@@ -63,7 +63,8 @@ final class AuthCodeAction
                     $authRequest->getClient()
                 );
 
-
+                print_r($user);
+                exit;
                 // Once the user has logged in set the user on the AuthorizationRequest
                 $authRequest->setUser($user);
 
@@ -91,7 +92,7 @@ final class AuthCodeAction
                   // Once the user has approved or denied the client update the status
                   // (true = approved, false = denied)
                   $authRequest->setAuthorizationApproved(false);
-                  
+
               }
 
               // remove redis
