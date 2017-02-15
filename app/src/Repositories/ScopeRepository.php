@@ -85,8 +85,6 @@ class ScopeRepository implements ScopeRepositoryInterface
          $sql.=" AND `user`.`id` = :user_id";
       }
 
-      $this->logger->info("sql: ".$sql."\nclient_id: ".$clientEntity->getInternalID()."\ngrant: ".$grantType."\nuserid: ".$userIdentifier);
-
       $stmt=$this->pdo->prepare($sql);
 
       $stmt->bindParam(':grant_type', $grantType, PDO::PARAM_STR);
@@ -116,8 +114,6 @@ class ScopeRepository implements ScopeRepositoryInterface
           }
         }
       }
-
-      $this->logger->info("Valid_Scopes: ".print_r($valid_scopes,true));
 
       return $valid_scopes;
     }
