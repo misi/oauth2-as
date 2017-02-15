@@ -47,8 +47,7 @@ final class AuthCodeAction
 
             // If user is not authenticated
             $phpAuthUser=$request->getServerParams()['PHP_AUTH_USER'];
-
-            if (!isset($phpAuthUser)) {
+            if ( !isset($phpAuthUser) ) {
                 return $response->withHeader('WWW-Authenticate','Basic realm="OAUTH"')->withStatus(401,'Unauthorized');
             }
 
@@ -80,8 +79,8 @@ final class AuthCodeAction
               // extract authRequest from session
               $authRequest = unserialize($this->session->authRequest);
 
-              $allGetVars = $request->getQueryParams();
-              if (isset($allGetVars['authRequest']) && $allGetVars['authRequest'] === true){
+              $allPostVars = $request->getParsedBody();
+              if (isset($allPostVars['authorize']) && $allPostVars['authorize'] === true){
 
                   // Once the user has approved or denied the client update the status
                   // (true = approved, false = denied)
