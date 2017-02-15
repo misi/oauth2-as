@@ -78,7 +78,8 @@ final class AuthCodeAction
 
               // extract authRequest from session
               $authRequest = unserialize($this->session->authRequest);
-
+              print_r($allPostVars['authorize']);
+              exit;
               $allPostVars = $request->getParsedBody();
               if (isset($allPostVars['authorize']) && $allPostVars['authorize'] === true){
 
