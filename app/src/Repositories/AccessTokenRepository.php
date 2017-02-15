@@ -34,7 +34,21 @@ class AccessTokenRepository implements AccessTokenRepositoryInterface
      */
     public function persistNewAccessToken(AccessTokenEntityInterface $accessTokenEntity)
     {
+        $this->logger->info(print_r($accessTokenEntity,true));
         // Some logic here to save the access token to a database
+      /*
+        $sql="insert into ";
+        $stmt=$this->pdo->prepare($sql);
+
+        $stmt->bindParam(':grant_type', $grantType, PDO::PARAM_STR);
+        $stmt->bindParam(':client_id', $clientEntity->getInternalID(), PDO::PARAM_INT);
+
+        if ($userIdentifier) {
+          $stmt->bindParam(':user_id', $userIdentifier, PDO::PARAM_INT);
+        }
+
+        $stmt->execute();
+        */
     }
 
     /**
