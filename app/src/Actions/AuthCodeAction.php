@@ -63,8 +63,6 @@ final class AuthCodeAction
                     $authRequest->getClient()
                 );
 
-                print_r($user);
-                exit;
                 // Once the user has logged in set the user on the AuthorizationRequest
                 $authRequest->setUser($user);
 
