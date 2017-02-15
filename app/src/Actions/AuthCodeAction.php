@@ -82,7 +82,7 @@ final class AuthCodeAction
               print_r($allPostVars['authorize']);
               $this->session->delete('authRequest');
               exit;
-              if (isset($allPostVars['authorize']) && $allPostVars['authorize'] === '1'){
+              if (isset($allPostVars['authorize']) && $allPostVars['authorize'] === 1){
 
                   // Once the user has approved or denied the client update the status
                   // (true = approved, false = denied)
