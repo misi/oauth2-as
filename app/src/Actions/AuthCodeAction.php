@@ -80,7 +80,7 @@ final class AuthCodeAction
               $authRequest = unserialize($this->session->authRequest);
               $allPostVars = $request->getParsedBody();
 
-              if (isset($allPostVars['authorize']) && $allPostVars['authorize'] === true){
+              if (isset($allPostVars['authorize']) && $allPostVars['authorize'] == true){
 
                   // Once the user has approved or denied the client update the status
                   // (true = approved, false = denied)
