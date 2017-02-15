@@ -17,7 +17,7 @@ class ClientEntity implements ClientEntityInterface
 {
     use EntityTrait, ClientTrait;
 
-    private $InternalID;
+    private $internalID;
     private $description;
     private $confidential;
 
@@ -38,7 +38,7 @@ class ClientEntity implements ClientEntityInterface
 
     public function getInternalID()
     {
-        return $this->InternalID;
+        return $this->internalID;
     }
 
     public function setDescription($description)
