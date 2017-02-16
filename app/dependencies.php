@@ -95,7 +95,7 @@ $container['authserver'] = function ($c) {
     // Enable the client credentials grant on the server
     $server->enableGrantType(
         new ClientCredentialsGrant(),
-        new \DateInterval('PT1H') // access tokens will expire after 1 hour
+        new \DateInterval('PT3H') // access tokens will expire after 1 hour
     );
 
     // Enable the implicit grant on the server with a token TTL of 1 hour

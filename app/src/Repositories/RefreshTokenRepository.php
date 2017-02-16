@@ -34,6 +34,7 @@ class RefreshTokenRepository implements RefreshTokenRepositoryInterface
     public function persistNewRefreshToken(RefreshTokenEntityInterface $refreshTokenEntityInterface)
     {
         // Some logic to persist the refresh token in a database
+        $this->logger->info(print_r($refreshTokenEntityInterface,true));
     }
 
     /**
