@@ -45,14 +45,9 @@ CREATE TABLE `acl_scope` (
 
 CREATE TABLE `auth_code` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `client_id` bigint(20) unsigned NOT NULL,
-  `user_id` bigint(20) unsigned NOT NULL,
-  `code` varchar(1000) NOT NULL COMMENT 'Auth Code',
+  `auth_code_id` varchar(1000) NOT NULL COMMENT 'Auth Code ID',
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Creation Timestamp',
-  `revoked` timestamp NULL DEFAULT NULL COMMENT 'Revocation Timestamp',
-  PRIMARY KEY (`id`),
-  FOREIGN KEY (`client_id`) REFERENCES `client` (`id`),
-  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 
 CREATE TABLE `auth_code_scope` (
@@ -65,14 +60,10 @@ CREATE TABLE `auth_code_scope` (
 
 CREATE TABLE `access_token` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `client_id` bigint(20) unsigned NOT NULL,
-  `user_id` bigint(20) unsigned NOT NULL,
-  `token` varchar(1000) NOT NULL COMMENT 'Token',
+  `token_id` varchar(50) NOT NULL COMMENT 'Token',
+  `expiry` timestamp NULL DEFAULT NULL COMMENT 'Expiry Timestamp',
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Creation Timestamp',
-  `revoked` timestamp NULL DEFAULT NULL COMMENT 'Revocation Timestamp',
-  PRIMARY KEY (`id`),
-  FOREIGN KEY (`client_id`) REFERENCES `client` (`id`),
-  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 
 CREATE TABLE `access_token_scope` (
@@ -86,15 +77,10 @@ CREATE TABLE `access_token_scope` (
 
 CREATE TABLE `refresh_token` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `client_id` bigint(20) unsigned NOT NULL,
-  `user_id` bigint(20) unsigned NOT NULL,
-  `access_token_id` bigint(20) unsigned NOT NULL,
+  `refresh_token_id` varchar(50) NOT NULL COMMENT 'Refresh Token ID',
+  `expiry` timestamp NULL DEFAULT NULL COMMENT 'Expiry Timestamp',
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Creation Timestamp',
-  `revoked` timestamp NULL DEFAULT NULL COMMENT 'Revocation Timestamp',
-  PRIMARY KEY (`id`),
-  FOREIGN KEY (`client_id`) REFERENCES `client` (`id`),
-  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-  FOREIGN KEY (`access_token_id`) REFERENCES `access_token` (`id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 
 #select user.username,client.name, scope.name from acl left join client on client.id = acl.client_id left join user on user.id = acl.user_id left join acl_scope on acl.id = acl_scope.acl_id left join scope on acl_scope.scope_id = scope.id;
