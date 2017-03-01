@@ -50,14 +50,6 @@ CREATE TABLE `auth_code` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 
-CREATE TABLE `auth_code_scope` (
-  `auth_code_id` bigint(20) unsigned NOT NULL,
-  `scope_id` bigint(20) unsigned NOT NULL,
-  PRIMARY KEY (`auth_code_id`,`scope_id`),
-  FOREIGN KEY (`auth_code_id`) REFERENCES `auth_code` (`id`),
-  FOREIGN KEY (`scope_id`) REFERENCES `scope` (`id`)
-) ENGINE=InnoDB;
-
 CREATE TABLE `access_token` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `token_id` varchar(50) NOT NULL COMMENT 'Token',
