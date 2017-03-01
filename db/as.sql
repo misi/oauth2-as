@@ -13,7 +13,7 @@ CREATE TABLE `client` (
 CREATE TABLE `user` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL COMMENT 'Login name',
-  `password` varchar(2000) NOT NULL COMMENT 'Encrypted Password',
+  `password` varchar(2000) NULL COMMENT 'Encrypted Password',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 
