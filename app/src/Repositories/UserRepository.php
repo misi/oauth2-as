@@ -61,7 +61,7 @@ class UserRepository implements UserRepositoryInterface
 
         $this->logger->info("password:".$data['password']);
 
-        if( hash("sha256",$password) === $data['password'] === true ) {
+        if( hash("sha256",$password) === $data['password']) === true ) {
           $user = new UserEntity();
           $user->setIdentifier($data['id']);
           return $user;
