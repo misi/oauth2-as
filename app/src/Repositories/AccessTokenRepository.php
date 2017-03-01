@@ -34,21 +34,16 @@ class AccessTokenRepository implements AccessTokenRepositoryInterface
      */
     public function persistNewAccessToken(AccessTokenEntityInterface $accessTokenEntity)
     {
-        $this->logger->info(print_r($accessTokenEntity,true));
         // Some logic here to save the access token to a database
-      /*
-        $sql="insert into ";
+        $sql="INSERT INTO access_token
+                          (access_token_id, expiry)
+                          VALUES (:access_token_id, from_unixtime(:expiry))";
         $stmt=$this->pdo->prepare($sql);
 
-        $stmt->bindParam(':grant_type', $grantType, PDO::PARAM_STR);
-        $stmt->bindParam(':client_id', $clientEntity->getInternalID(), PDO::PARAM_INT);
-
-        if ($userIdentifier) {
-          $stmt->bindParam(':user_id', $userIdentifier, PDO::PARAM_INT);
-        }
+        $stmt->bindParam(':access_token_id', $accessTokenEntity->getIdentifier(), PDO::PARAM_STR);
+        $stmt->bindParam(':expiry', $accessTokenEntity->getExpiryDateTime()->getTimestamp(), PDO::PARAM_INT);
 
         $stmt->execute();
-        */
     }
 
     /**
@@ -57,6 +52,11 @@ class AccessTokenRepository implements AccessTokenRepositoryInterface
     public function revokeAccessToken($tokenId)
     {
         // Some logic here to revoke the access token
+        $sql="DELETE FROM access_token
+                          WHERE access_token_id=:access_token_id";
+        $stmt=$this->pdo->prepare($sql);
+        $stmt->bindParam(':access_token_id', $tokenId , PDO::PARAM_STR);
+        $stmt->execute();
     }
 
     /**
@@ -64,7 +64,15 @@ class AccessTokenRepository implements AccessTokenRepositoryInterface
      */
     public function isAccessTokenRevoked($tokenId)
     {
-        return false; // Access token hasn't been revoked
+        $sql="SELECT FROM access_token
+                        WHERE access_token_id=:access_token_id  and expiry >= NOW()";
+        $stmt=$this->pdo->prepare($sql);
+        $stmt->bindParam(':access_token_id', $tokenId , PDO::PARAM_STR);
+        $stmt->execute();
+        if ($stmt->fetchColumn() == 1) {
+            return false; // Access token hasn't been revoked
+        }
+        return true;
     }
 
     /**
