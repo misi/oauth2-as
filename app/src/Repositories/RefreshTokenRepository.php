@@ -31,10 +31,18 @@ class RefreshTokenRepository implements RefreshTokenRepositoryInterface
     /**
      * {@inheritdoc}
      */
-    public function persistNewRefreshToken(RefreshTokenEntityInterface $refreshTokenEntityInterface)
+    public function persistNewRefreshToken(RefreshTokenEntityInterface $refreshTokenEntity)
     {
         // Some logic to persist the refresh token in a database
-        $this->logger->info(print_r($refreshTokenEntityInterface,true));
+        $sql="INSERT INTO refresh_token
+                          (refresh_token_id, expiry)
+                          VALUES (:refresh_token_id, from_unixtime(:expiry))";
+        $stmt=$this->pdo->prepare($sql);
+
+        $stmt->bindParam(':refresh_token_id', $refreshTokenEntity->getIdentifier(), PDO::PARAM_STR);
+        $stmt->bindParam(':expiry', $refreshTokenEntity->getExpiryDateTime()->getTimestamp(), PDO::PARAM_INT);
+
+        $stmt->execute();
     }
 
     /**
@@ -43,6 +51,12 @@ class RefreshTokenRepository implements RefreshTokenRepositoryInterface
     public function revokeRefreshToken($tokenId)
     {
         // Some logic to revoke the refresh token in a database
+        $sql="DELETE FROM refresh_token
+                          WHERE refresh_token_id=:refresh_token_id)";
+        $stmt=$this->pdo->prepare($sql);
+        $stmt->bindParam(':refresh_token_id', $tokenId , PDO::PARAM_STR);
+        $stmt->execute();
+
     }
 
     /**
@@ -50,7 +64,15 @@ class RefreshTokenRepository implements RefreshTokenRepositoryInterface
      */
     public function isRefreshTokenRevoked($tokenId)
     {
-        return false; // The refresh token has not been revoked
+        $sql="SELECT FROM refresh_token
+                      WHERE refresh_token_id=:refresh_token_id and expiry >= NOW()";
+        $stmt=$this->pdo->prepare($sql);
+        $stmt->bindParam(':refresh_token_id', $tokenId , PDO::PARAM_STR);
+        $stmt->execute();
+        if ($stmt->fetchColumn() == 1) {
+            return false; // Access token hasn't been revoked
+        }
+        return true;
     }
 
     /**
