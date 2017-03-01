@@ -46,6 +46,7 @@ CREATE TABLE `acl_scope` (
 CREATE TABLE `auth_code` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `auth_code_id` varchar(1000) NOT NULL COMMENT 'Auth Code ID',
+  `expiry` timestamp NULL DEFAULT NULL COMMENT 'Expiry Timestamp',
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Creation Timestamp',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
