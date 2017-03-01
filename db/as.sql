@@ -66,15 +66,6 @@ CREATE TABLE `access_token` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 
-CREATE TABLE `access_token_scope` (
-  `access_token_id` bigint(20) unsigned NOT NULL,
-  `scope_id` bigint(20) unsigned NOT NULL,
-  PRIMARY KEY (`access_token_id`,`scope_id`),
-  FOREIGN KEY (`access_token_id`) REFERENCES `access_token` (`id`),
-  FOREIGN KEY (`scope_id`) REFERENCES `scope` (`id`)
-) ENGINE=InnoDB;
-
-
 CREATE TABLE `refresh_token` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `refresh_token_id` varchar(50) NOT NULL COMMENT 'Refresh Token ID',
