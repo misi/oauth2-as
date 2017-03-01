@@ -34,6 +34,15 @@ class AuthCodeRepository implements AuthCodeRepositoryInterface
     public function persistNewAuthCode(AuthCodeEntityInterface $authCodeEntity)
     {
         // Some logic to persist the auth code to a database
+        $sql="INSERT INTO auth_code
+                          (auth_code_id, expiry)
+                          VALUES (:auth_code_id, from_unixtime(:expiry))";
+        $stmt=$this->pdo->prepare($sql);
+
+        $stmt->bindParam(':auth_code_id', $authCodeEntity->getIdentifier(), PDO::PARAM_STR);
+        $stmt->bindParam(':expiry', $authCodeEntity->getExpiryDateTime()->getTimestamp(), PDO::PARAM_STR);
+
+        $stmt->execute();
     }
 
     /**
@@ -42,6 +51,11 @@ class AuthCodeRepository implements AuthCodeRepositoryInterface
     public function revokeAuthCode($codeId)
     {
         // Some logic to revoke the auth code in a database
+        $sql="DELETE FROM auth_code
+                          WHERE auth_code_id=:auth_code_id)";
+        $stmt=$this->pdo->prepare($sql);
+        $stmt->bindParam(':auth_code_id', $codeId , PDO::PARAM_STR);
+        $stmt->execute();
     }
 
     /**
@@ -49,7 +63,15 @@ class AuthCodeRepository implements AuthCodeRepositoryInterface
      */
     public function isAuthCodeRevoked($codeId)
     {
-        return false; // The auth code has not been revoked
+      $sql="SELECT FROM auth_code
+                      WHERE auth_code_id=:auth_code_id and expiry >= NOW()";
+      $stmt=$this->pdo->prepare($sql);
+      $stmt->bindParam(':auth_code_id', $codeId , PDO::PARAM_STR);
+      $stmt->execute();
+      if ($stmt->fetchColumn() == 1) {
+          return false; // Access token hasn't been revoked
+      }
+      return true;
     }
 
     /**
