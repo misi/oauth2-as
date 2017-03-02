@@ -49,6 +49,7 @@ return [
             'public_key' => '/../public.key',
             // Grants
             'AuthCodeGrant' => [
+              'enabled' => 'true',
               'access_token_ttl' => 'PT1H',
               'refresh_token_ttl' => 'PT10M',
             ],
@@ -69,8 +70,6 @@ return [
               'enabled' => 'true',
               'access_token_ttl' => 'P1M',
             ],
-
-
         ],
     ],
 ];
