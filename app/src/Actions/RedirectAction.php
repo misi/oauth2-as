@@ -30,8 +30,8 @@ final class RedirectAction
         $this->logger->info("Redirect action dispatched");
 
         $code=$request->getQueryParams()['code'];
-        if ( !isset($code) ) {
-            $this->view->render($response, 'r edirect.twig',
+        if ( isset($code) ) {
+            $this->view->render($response, 'redirect.twig',
               [
                 'code' => $code,
 		          ]
