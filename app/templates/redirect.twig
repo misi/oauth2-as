@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, user-scalable=yes">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-7">
+        <h2>Welcome to Redirect!</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-10">
+        <form action="access_token" method="post">
+          <input type="text" name="code" value="{{code}}">
+          <input type="text" name="grant_type" value="authorization_code">
+          <input type="text" name="client_id" value="">
+          <input type="text" name="client_secret" valude="">
+          <button type="submit" class="btn btn-primary">Send</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
