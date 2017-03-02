@@ -53,7 +53,7 @@ CREATE TABLE `auth_code` (
 
 CREATE TABLE `access_token` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `token_id` varchar(50) NOT NULL COMMENT 'Token',
+  `access_token_id` varchar(50) NOT NULL COMMENT 'Token',
   `expiry` timestamp NULL DEFAULT NULL COMMENT 'Expiry Timestamp',
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Creation Timestamp',
   PRIMARY KEY (`id`)
