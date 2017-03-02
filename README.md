@@ -8,6 +8,6 @@ OAuth2 Auth Server sandbox
 
 https://host/auth?response_type=token&client_id=50fd4183-eded-11e6-b500-00065bf31ae6&scope=scope1&redirect_uri=https://redirecturi
 
-add scheduled event support for mysql
+Setup support for scheduled events in mysql
 [mysqld]
 event_scheduler=ON
