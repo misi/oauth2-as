@@ -11,7 +11,7 @@ use Psr\Log\LoggerInterface;
 use Slim\Views\Twig;
 
 
-final class RedirectCodeAction
+final class RedirectAction
 {
     private $logger;
 
