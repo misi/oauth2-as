@@ -68,9 +68,10 @@ CREATE TABLE `refresh_token` (
 ) ENGINE=InnoDB;
 
 DELIMITER ;;
-CREATE EVENT `tidy` ON SCHEDULE EVERY 1 DAY STARTS '2015-01-01 00:00:00' ON COMPLETION NOT PRESERVE ENABLE DO BEGIN
+CREATE EVENT `tidy` ON SCHEDULE EVERY 1 HOUR STARTS '2015-01-01 00:00:00' ON COMPLETION NOT PRESERVE ENABLE DO BEGIN
 DELETE FROM `access_token` where expiry < NOW();
 DELETE FROM `auth_code` where expiry < NOW();
+DELETE FROM `refresh_token` where expiry < NOW();
 END ;;
 
 #select user.username,client.name, scope.name from acl left join client on client.id = acl.client_id left join user on user.id = acl.user_id left join acl_scope on acl.id = acl_scope.acl_id left join scope on acl_scope.scope_id = scope.id;
