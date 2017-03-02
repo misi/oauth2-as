@@ -64,7 +64,7 @@ class RefreshTokenRepository implements RefreshTokenRepositoryInterface
      */
     public function isRefreshTokenRevoked($tokenId)
     {
-        $sql="SELECT FROM refresh_token
+        $sql="SELECT id FROM refresh_token
                       WHERE refresh_token_id=:refresh_token_id and expiry >= NOW()";
         $stmt=$this->pdo->prepare($sql);
         $stmt->bindParam(':refresh_token_id', $tokenId , PDO::PARAM_STR);

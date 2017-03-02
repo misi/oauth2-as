@@ -63,7 +63,7 @@ class AuthCodeRepository implements AuthCodeRepositoryInterface
      */
     public function isAuthCodeRevoked($codeId)
     {
-      $sql="SELECT FROM auth_code
+      $sql="SELECT id FROM auth_code
                       WHERE auth_code_id=:auth_code_id and expiry >= NOW()";
       $stmt=$this->pdo->prepare($sql);
       $stmt->bindParam(':auth_code_id', $codeId , PDO::PARAM_STR);

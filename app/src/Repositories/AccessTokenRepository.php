@@ -64,7 +64,7 @@ class AccessTokenRepository implements AccessTokenRepositoryInterface
      */
     public function isAccessTokenRevoked($tokenId)
     {
-        $sql="SELECT FROM access_token
+        $sql="SELECT id FROM access_token
                         WHERE access_token_id=:access_token_id  and expiry >= NOW()";
         $stmt=$this->pdo->prepare($sql);
         $stmt->bindParam(':access_token_id', $tokenId , PDO::PARAM_STR);
