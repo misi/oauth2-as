@@ -70,8 +70,8 @@ $container['authserver'] = function ($c) {
     $accessTokenRepository = new AccessTokenRepository($c->get('pdo'), $c->get('logger'));
     $refreshTokenRepository = new RefreshTokenRepository($c->get('pdo'), $c->get('logger'));
 
-    $privateKeyPath = 'file://' . __DIR__ . '/../private.key';
-    $publicKeyPath = 'file://' . __DIR__ . '/../public.key';
+    $privateKeyPath = 'file://' . __DIR__ . $settings['private_key'];
+    $publicKeyPath = 'file://' . __DIR__ . $settings['public_key'];
 
     // Setup the authorization server
     $server = new AuthorizationServer(
@@ -82,40 +82,65 @@ $container['authserver'] = function ($c) {
         $publicKeyPath
     );
 
-    // Enable the authentication code grant on the server with a token TTL of 1 hour
-    $server->enableGrantType(
-        new AuthCodeGrant(
-            $authCodeRepository,
-            $refreshTokenRepository,
-            new \DateInterval('PT10M')
+    // AuthCodeGrant
+    if( isset($settings['AuthCodeGrant']) &&
+              $settings['AuthCodeGrant']['enabled'] ){
+        // Enable the authentication code grant on the server
+        $server->enableGrantType(
+            new AuthCodeGrant(
+                $authCodeRepository,
+                $refreshTokenRepository,
+                new \DateInterval($settings['AuthCodeGrant']['refresh_token_ttl'])
+            ),
+            new \DateInterval($settings['AuthCodeGrant']['access_token_ttl'])
+        );
+    }
+
+    // ClientCredentialsGrant
+    if( isset($settings['ClientCredentialsGrant']) &&
+              $settings['ClientCredentialsGrant']['enabled'] ){
+        // Enable the client credentials grant on the server
+        $server->enableGrantType(
+            new ClientCredentialsGrant(),
+            new \DateInterval($settings['ClientCredentialsGrant']['access_token_ttl'])
+        );
+    }
+
+    // ImplicitGrant
+    if( isset($settings['ImplicitGrant']) &&
+              $settings['ImplicitGrant']['enabled'] ){
+        // Enable the implicit grant on the server with a token 1TTL of 1 hour
+        $server->enableGrantType(
+            new ImplicitGrant(
+                new \DateInterval($settings['ImplicitGrant']['access_token_ttl'])
+            )
+        );
+    }
+
+    // PasswordGrant
+    if( isset($settings['PasswordGrant']) &&
+              $settings['PasswordGrant']['enabled'] ){
+        // Enable the password grant on the server with a token TTL of 1 hour
+        $server->enableGrantType(
+            new PasswordGrant(
+                $userRepository, // instance of UserRepositoryInterface
+                $refreshTokenRepository, // instance of RefreshTokenRepositoryInterface
+                // refresh token
+                new \DateInterval($settings['PasswordGrant']['refresh_token_ttl'])
         ),
-        new \DateInterval('PT1H')
-    );
+            new \DateInterval($settings['PasswordGrant']['access_token_ttl']) // access token
+        );
+    }
 
-    // Enable the client credentials grant on the server
-    $server->enableGrantType(
-        new ClientCredentialsGrant(),
-        new \DateInterval('PT3H') // access tokens will expire after 1 hour
-    );
-
-    // Enable the implicit grant on the server with a token TTL of 1 hour
-    $server->enableGrantType(new ImplicitGrant(new \DateInterval('PT1H')));
-
-    // Enable the password grant on the server with a token TTL of 1 hour
-    $server->enableGrantType(
-        new PasswordGrant(
-            $userRepository, // instance of UserRepositoryInterface
-            $refreshTokenRepository, // instance of RefreshTokenRepositoryInterface
-            new \DateInterval('P1M') // refresh tokens will expire after 1 month
-        ),
-        new \DateInterval('PT1H') // access tokens will expire after 1 hour
-    );
-
-    // Enable the refresh token grant on the server with a token TTL of 1 month
-    $server->enableGrantType(
-        new RefreshTokenGrant($refreshTokenRepository),
-        new \DateInterval('PT1M')
-    );
+    // RefreshTokenGrant
+    if( isset($settings['RefreshTokenGrant']) &&
+              $settings['RefreshTokenGrant']['enabled'] ){
+        // Enable the refresh token grant on the server with a token TTL of 1 month
+        $server->enableGrantType(
+            new RefreshTokenGrant($refreshTokenRepository),
+            new \DateInterval('PT1M')
+        );
+    }
 
     return $server;
 };

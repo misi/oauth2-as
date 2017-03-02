@@ -38,5 +38,39 @@ return [
             'autorefresh' => true,
             'lifetime' => '1 hour'
         ],
+
+        // Authserver Settings
+        'authserver' => [
+            //urls
+            'authorize_url' => '/authorize',
+            'access_token_url' => '/access_token',
+            // Asymmetric keys
+            'private_key' => '/../private.key',
+            'public_key' => '/../public.key',
+            // Grants
+            'AuthCodeGrant' => [
+              'access_token_ttl' => 'PT1H',
+              'refresh_token_ttl' => 'PT10M',
+            ],
+            'ClientCredentialsGrant' => [
+              'enabled' => 'true',
+              'access_token_ttl' => 'PT1H',
+            ],
+            'ImplicitGrant' => [
+              'enabled' => 'true',
+              'access_token_ttl' => 'PT1H',
+            ],
+            'PasswordGrant' => [
+              'enabled' => 'true',
+              'access_token_ttl' => 'P1M',
+              'refresh_token_ttl' => 'P1M',
+            ],
+            'RefreshTokenGrant' => [
+              'enabled' => 'true',
+              'access_token_ttl' => 'P1M',
+            ],
+
+
+        ],
     ],
 ];
