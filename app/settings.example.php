@@ -41,6 +41,8 @@ return [
 
         // Authserver Settings
         'authserver' => [
+           'errorHandler' => false, /// on/off
+           'notFoundHandler' => true, /// on/off
             //urls
             'authorize_url' => '/authorize',
             'access_token_url' => '/access_token',

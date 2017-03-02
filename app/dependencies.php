@@ -15,12 +15,15 @@ use League\OAuth2\Server\Grant\PasswordGrant;
 use League\OAuth2\Server\Grant\RefreshTokenGrant;
 use Slim\Views\Twig;
 
+
+
 // DIC configuration
 $container = $app->getContainer();
 
 // -----------------------------------------------------------------------------
 // Service providers
 // -----------------------------------------------------------------------------
+
 
 // Twig
 $container['view'] = function ($c) {
@@ -58,6 +61,29 @@ $container['logger'] = function ($c) {
 $container['userrepository'] = function ($c) {
       return new UserRepository($c->get('pdo'), $c->get('logger'));
 };
+
+// error handler
+if ($container->get('settings')['authserver']['errorHandler']) {
+    $container['errorHandler'] = function ($c) {
+        return function ($request, $response, $exception) use ($c) {
+            return $c['response']->withStatus(500)
+                                 ->withHeader('Content-Type', 'application/json')
+                                 ->withJson(array('info' => 'Something went wrong!'));
+        };
+    };
+}
+
+// notFound handler
+if ($container->get('settings')['authserver']['notFoundHandler']) {
+    $container['notFoundHandler'] = function ($c) {
+        return function ($request, $response) use ($c) {
+            return $c['response']
+                ->withStatus(404)
+                ->withHeader('Content-Type', 'application/json')
+                ->withJson(array('info' => 'Route not defined'));
+        };
+    };
+}
 
 $container['authserver'] = function ($c) {
     $settings = $c->get('settings')['authserver'];
