@@ -41,7 +41,7 @@ return [
 
         // Authserver Settings
         'authserver' => [
-           'errorHandler' => false, /// on/off
+           'errorHandler' => true, /// on/off
            'notFoundHandler' => true, /// on/off
             //urls
             'authorize_url' => '/authorize',
