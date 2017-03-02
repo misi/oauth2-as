@@ -7,7 +7,7 @@ CREATE TABLE `client` (
   `redirect_uri` varchar(2000) DEFAULT NULL COMMENT 'redirect URI',
   `confidential` BOOLEAN NOT NULL DEFAULT 0 COMMENT 'Confidential client (could store secret)',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `uuid` (`uuid`)
+  UNIQUE KEY `public_id` (`public_id`)
 ) ENGINE=InnoDB;
 
 CREATE TABLE `user` (
