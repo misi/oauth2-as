@@ -183,8 +183,8 @@ $container[OAuth2Server\Actions\TokenAction::class] = function ($c) {
     return new OAuth2Server\Actions\TokenAction($c->get('authserver'), $c->get('logger'));
 };
 
-$container[OAuth2Server\Actions\RedirectCodeAction::class] = function ($c) {
-    return new OAuth2Server\Actions\RedirectCodeAction($c->get('logger'),$c->get('view'));
+$container[OAuth2Server\Actions\RedirectAction::class] = function ($c) {
+    return new OAuth2Server\Actions\RedirectAction($c->get('logger'), $c->get('view'));
 };
 
 //Repositories
