@@ -41,6 +41,7 @@ return [
 
         // Authserver Settings
         'authserver' => [
+           // Error and Not Found handler
            'errorHandler' => true, /// on/off
            'notFoundHandler' => true, /// on/off
             //urls
