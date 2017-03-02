@@ -41,15 +41,18 @@ return [
 
         // Authserver Settings
         'authserver' => [
+
            // Error and Not Found handler
            'errorHandler' => true, /// on/off
            'notFoundHandler' => true, /// on/off
-            //urls
+
+            // URLs
             'authorize_url' => '/authorize',
             'access_token_url' => '/access_token',
             // Asymmetric keys
             'private_key' => '/../private.key',
             'public_key' => '/../public.key',
+
             // Grants
             'AuthCodeGrant' => [
               'enabled' => 'true',
