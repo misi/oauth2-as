@@ -40,4 +40,5 @@ final class RedirectCodeAction
         } else {
             return $response->withStatus(500)->withBody($body);
         }
+    }
 }
