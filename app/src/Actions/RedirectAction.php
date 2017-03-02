@@ -31,14 +31,14 @@ final class RedirectAction
 
         $code=$request->getQueryParams()['code'];
         if ( !isset($code) ) {
-            $this->view->render($response, 'redirect.twig',
+            $this->view->render($response, 'r edirect.twig',
               [
                 'code' => $code,
 		          ]
             );
             return $response;
         } else {
-            return $response->withStatus(500)->withBody($body);
+            return $response->withStatus(500);
         }
     }
 }
