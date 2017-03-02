@@ -31,7 +31,7 @@ final class RedirectAction
 
         $code=$request->getQueryParams()['code'];
         if ( !isset($code) ) {
-            $this->view->render($response, 'Redirect.twig',
+            $this->view->render($response, 'redirect.twig',
               [
                 'code' => $code,
 		          ]
