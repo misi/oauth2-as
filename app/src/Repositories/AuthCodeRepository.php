@@ -64,16 +64,15 @@ class AuthCodeRepository implements AuthCodeRepositoryInterface
     public function isAuthCodeRevoked($codeId)
     {
       $this->logger->info('misi!!!!'.$codeId);
-      $sql="SELECT id FROM auth_code
+      $sql="SELECT COUNT(*) FROM auth_code
                       WHERE auth_code_id=:auth_code_id and expiry >= NOW()";
       $stmt=$this->pdo->prepare($sql);
       $stmt->bindParam(':auth_code_id', $codeId , PDO::PARAM_STR);
       $stmt->execute();
       if ($stmt->fetchColumn() == 1) {
-          $this->logger->info('misi!!!!3'.$stmt->fetchColumn());
           return false; // Access token hasn't been revoked
       }
-      $this->logger->info('misi!!!!2'.$stmt->fetchColumn());
+      $this->logger->info('misi!!!!2'.$stmt->rowCount());
       return true;
     }
 
