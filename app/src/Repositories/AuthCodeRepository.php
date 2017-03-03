@@ -70,6 +70,7 @@ class AuthCodeRepository implements AuthCodeRepositoryInterface
       $stmt->bindParam(':auth_code_id', $codeId , PDO::PARAM_STR);
       $stmt->execute();
       if ($stmt->fetchColumn() == 1) {
+          $this->logger->info('misi!!!!3'.$stmt->fetchColumn());
           return false; // Access token hasn't been revoked
       }
       $this->logger->info('misi!!!!2'.$stmt->fetchColumn());
