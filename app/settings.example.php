@@ -50,6 +50,7 @@ return [
             'authorize_url' => '/authorize',
             'access_token_url' => '/access_token',
             'redirect_url' => '/redirect',
+            
             // Asymmetric keys
             'private_key' => '/../private.key',
             'public_key' => '/../public.key',
