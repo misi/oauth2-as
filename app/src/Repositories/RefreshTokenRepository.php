@@ -70,8 +70,10 @@ class RefreshTokenRepository implements RefreshTokenRepositoryInterface
         $stmt->bindParam(':refresh_token_id', $tokenId , PDO::PARAM_STR);
         $stmt->execute();
         if ($stmt->fetchColumn() == 1) {
+            $this->logger->info('token valid: '.$tokenId);
             return false; // Access token hasn't been revoked
         }
+        $this->logger->info('token invalid: '.$tokenId);
         return true;
     }
 
