@@ -52,7 +52,7 @@ class AuthCodeRepository implements AuthCodeRepositoryInterface
     {
         // Some logic to revoke the auth code in a database
         $sql="DELETE FROM auth_code
-                          WHERE auth_code_id=:auth_code_id)";
+                          WHERE auth_code_id=:auth_code_id";
         $stmt=$this->pdo->prepare($sql);
         $stmt->bindParam(':auth_code_id', $codeId , PDO::PARAM_STR);
         $stmt->execute();
