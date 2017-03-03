@@ -61,7 +61,7 @@ CREATE TABLE `access_token` (
 
 CREATE TABLE `refresh_token` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `refresh_token_id` varchar(50) NOT NULL COMMENT 'Refresh Token ID',
+  `refresh_token_id` varchar(100) NOT NULL COMMENT 'Refresh Token ID',
   `expiry` timestamp NULL DEFAULT NULL COMMENT 'Expiry Timestamp',
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Creation Timestamp',
   PRIMARY KEY (`id`)
