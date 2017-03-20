@@ -14,7 +14,6 @@ use League\OAuth2\Server\Grant\ImplicitGrant;
 use League\OAuth2\Server\Grant\PasswordGrant;
 use League\OAuth2\Server\Grant\RefreshTokenGrant;
 use Slim\Views\Twig;
-use PDO;
 
 
 // DIC configuration
