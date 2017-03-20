@@ -1,7 +1,7 @@
 <?php
 namespace OAuth2Server\Actions;
 
-
+use Interop\Container\ContainerInterface;
 use League\OAuth2\Server\AuthorizationServer;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use OAuth2Server\Entities\UserEntity;
@@ -30,16 +30,16 @@ final class AuthCodeAction
 
     private $session;
 
-    public function __construct(UserRepositoryInterface $userrepository, AuthorizationServer $authserver, LoggerInterface $logger, TWIG $view, Helper $session)
+    public function __construct(ContainerInterface $c)
     {
-        $this->logger = $logger;
-        $this->authserver = $authserver;
-        $this->userrepository = $userrepository;
-        $this->view = $view;
-        $this->session = $session;
+        $this->logger = $c->get('logger');
+        $this->authserver = $c->get('authserver');
+        $this->userrepository = $c->get('userrepository');
+        $this->view = $c->get('view');
+        $this->session = $c->get('session');
     }
 
-    public function __invoke(ServerRequestInterface $request, ResponseInterface $response, $args)
+    public function __invoke(ServerRequestInterface $request, ResponseInterface $response)
     {
         $this->logger->info("auth action dispatched");
 

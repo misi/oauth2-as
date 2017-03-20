@@ -13,19 +13,16 @@ use League\OAuth2\Server\Entities\AuthCodeEntityInterface;
 use League\OAuth2\Server\Repositories\AuthCodeRepositoryInterface;
 use OAuth2Server\Entities\AuthCodeEntity;
 
-use Psr\Log\LoggerInterface;
-use \PDO;
-
 class AuthCodeRepository implements AuthCodeRepositoryInterface
 {
     private $logger;
 
     private $pdo;
 
-    public function __construct(PDO $pdo, LoggerInterface $logger)
+    public function __construct()
     {
-      $this->pdo = $pdo;
-      $this->logger = $logger;
+      $this->logger = $c->get('logger');
+      $this->pdo = $c->get('pdo');
     }
 
     /**

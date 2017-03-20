@@ -12,19 +12,16 @@ namespace OAuth2Server\Repositories;
 use League\OAuth2\Server\Repositories\ClientRepositoryInterface;
 use OAuth2Server\Entities\ClientEntity;
 
-use Psr\Log\LoggerInterface;
-use \PDO;
-
 class ClientRepository implements ClientRepositoryInterface
 {
     private $logger;
 
     private $pdo;
 
-    public function __construct(PDO $pdo, LoggerInterface $logger)
+    public function __construct()
     {
-      $this->pdo = $pdo;
-      $this->logger = $logger;
+      $this->logger = $c->get('logger');
+      $this->pdo = $c->get('pdo');
     }
 
     /**

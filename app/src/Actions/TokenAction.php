@@ -1,7 +1,7 @@
 <?php
 namespace OAuth2Server\Actions;
 
-
+use Interop\Container\ContainerInterface;
 use League\OAuth2\Server\AuthorizationServer;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use OAuth2Server\Entities\UserEntity;
@@ -17,10 +17,10 @@ final class TokenAction
 
     private $authserver;
 
-    public function __construct(AuthorizationServer $authserver, LoggerInterface $logger)
+    public function __construct(ContainerInterface $c)
     {
-        $this->logger = $logger;
-        $this->authserver = $authserver;
+        $this->logger = $c->get('logger');
+        $this->authserver = $c->get('authserver');
     }
 
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response)

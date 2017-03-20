@@ -1,7 +1,7 @@
 <?php
 namespace OAuth2Server\Actions;
 
-
+use Interop\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Stream;
@@ -25,7 +25,7 @@ final class RedirectAction
         $this->view = $view;
     }
 
-    public function __invoke(ServerRequestInterface $request, ResponseInterface $response, $args)
+    public function __invoke(ServerRequestInterface $request, ResponseInterface $response)
     {
         $this->logger->info("Redirect action dispatched");
 

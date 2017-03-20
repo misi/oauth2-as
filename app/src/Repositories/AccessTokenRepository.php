@@ -14,8 +14,6 @@ use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Repositories\AccessTokenRepositoryInterface;
 use OAuth2Server\Entities\AccessTokenEntity;
 
-use Psr\Log\LoggerInterface;
-use \PDO;
 
 class AccessTokenRepository implements AccessTokenRepositoryInterface
 {
@@ -23,10 +21,10 @@ class AccessTokenRepository implements AccessTokenRepositoryInterface
 
     private $pdo;
 
-    public function __construct(PDO $pdo, LoggerInterface $logger)
+    public function __construct()
     {
-        $this->pdo = $pdo;
-        $this->logger = $logger;
+        $this->logger = $c->get('logger');
+        $this->pdo = $c->get('pdo');
     }
 
     /**
