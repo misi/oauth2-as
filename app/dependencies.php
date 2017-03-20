@@ -178,7 +178,6 @@ $container[OAuth2Server\Actions\AuthCodeAction::class] = function ($c) {
     return new OAuth2Server\Actions\AuthCodeAction();
 };
 
-
 $container[OAuth2Server\Actions\TokenAction::class] = function ($c) {
     return new OAuth2Server\Actions\TokenAction();
 };
