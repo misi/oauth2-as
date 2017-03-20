@@ -13,6 +13,8 @@ use League\OAuth2\Server\Entities\RefreshTokenEntityInterface;
 use League\OAuth2\Server\Repositories\RefreshTokenRepositoryInterface;
 use OAuth2Server\Entities\RefreshTokenEntity;
 
+use Interop\Container\ContainerInterface;
+
 class RefreshTokenRepository implements RefreshTokenRepositoryInterface
 {
     private $logger;

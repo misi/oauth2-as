@@ -13,6 +13,8 @@ use League\OAuth2\Server\Entities\AuthCodeEntityInterface;
 use League\OAuth2\Server\Repositories\AuthCodeRepositoryInterface;
 use OAuth2Server\Entities\AuthCodeEntity;
 
+use Interop\Container\ContainerInterface;
+
 class AuthCodeRepository implements AuthCodeRepositoryInterface
 {
     private $logger;

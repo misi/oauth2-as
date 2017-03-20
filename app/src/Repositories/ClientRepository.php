@@ -12,6 +12,8 @@ namespace OAuth2Server\Repositories;
 use League\OAuth2\Server\Repositories\ClientRepositoryInterface;
 use OAuth2Server\Entities\ClientEntity;
 
+use Interop\Container\ContainerInterface;
+
 class ClientRepository implements ClientRepositoryInterface
 {
     private $logger;

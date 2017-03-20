@@ -13,13 +13,15 @@ use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Repositories\UserRepositoryInterface;
 use OAuth2Server\Entities\UserEntity;
 
+use Interop\Container\ContainerInterface;
+
 class UserRepository implements UserRepositoryInterface
 {
     private $logger;
 
     private $pdo;
 
-    public function __construct()
+    public function __construct(ContainerInterface $c)
     {
       $this->logger = $c->get('logger');
       $this->pdo = $c->get('pdo');
