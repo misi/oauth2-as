@@ -23,7 +23,7 @@ class ClientRepository implements ClientRepositoryInterface
     public function __construct(ContainerInterface $c)
     {
       $this->logger = $c->get('logger');
-      $this->pdo = $c->get('pdo');
+      $this->pdo =(\PDO)$c->get('pdo');
     }
 
     /**
