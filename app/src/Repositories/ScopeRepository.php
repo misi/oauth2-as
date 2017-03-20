@@ -19,7 +19,7 @@ class ScopeRepository implements ScopeRepositoryInterface
 {
     private $logger;
 
-    private PDO $pdo;
+    private $pdo;
 
     public function __construct(ContainerInterface $c)
     {
