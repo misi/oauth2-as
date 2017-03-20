@@ -14,7 +14,7 @@ use League\OAuth2\Server\Grant\ImplicitGrant;
 use League\OAuth2\Server\Grant\PasswordGrant;
 use League\OAuth2\Server\Grant\RefreshTokenGrant;
 use Slim\Views\Twig;
-
+use PDO;
 
 
 // DIC configuration
@@ -43,7 +43,7 @@ $container['session'] = function ($c) {
 //pdo
 $container['pdo'] = function ($c) {
     $settings = $c->get('settings')['pdo'];
-    $pdo = new \PDO($settings['dsn'], $settings['username'], $settings['password'], $settings['options']);
+    $pdo = new PDO($settings['dsn'], $settings['username'], $settings['password'], $settings['options']);
     return $pdo;
 };
 
