@@ -21,7 +21,7 @@ class RefreshTokenRepository implements RefreshTokenRepositoryInterface
 
     private $pdo;
 
-    public function __construct()
+    public function __construct(ContainerInterface $c)
     {
       $this->logger = $c->get('logger');
       $this->pdo = $c->get('pdo');
