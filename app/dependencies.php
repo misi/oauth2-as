@@ -59,7 +59,7 @@ $container['logger'] = function ($c) {
 
 // UserRepository
 $container['userrepository'] = function ($c) {
-      return new UserRepository($c->get('pdo'), $c->get('logger'));
+      return new UserRepository($c);
 };
 
 // error handler
@@ -90,11 +90,11 @@ $container['authserver'] = function ($c) {
 
     // Init our repositories
     $userRepository = $c->get('userrepository');
-    $clientRepository = new ClientRepository($c->get('pdo'), $c->get('logger'));
-    $scopeRepository = new ScopeRepository($c->get('pdo'), $c->get('logger'));
-    $authCodeRepository = new AuthCodeRepository($c->get('pdo'), $c->get('logger'));
-    $accessTokenRepository = new AccessTokenRepository($c->get('pdo'), $c->get('logger'));
-    $refreshTokenRepository = new RefreshTokenRepository($c->get('pdo'), $c->get('logger'));
+    $clientRepository = new ClientRepository($c);
+    $scopeRepository = new ScopeRepository($c);
+    $authCodeRepository = new AuthCodeRepository($c);
+    $accessTokenRepository = new AccessTokenRepository($c);
+    $refreshTokenRepository = new RefreshTokenRepository($c);
 
     $privateKeyPath = 'file://' . __DIR__ . $settings['private_key'];
     $publicKeyPath = 'file://' . __DIR__ . $settings['public_key'];
