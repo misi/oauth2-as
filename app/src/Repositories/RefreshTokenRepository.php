@@ -15,11 +15,13 @@ use OAuth2Server\Entities\RefreshTokenEntity;
 
 use Interop\Container\ContainerInterface;
 
+use \\PDO
+
 class RefreshTokenRepository implements RefreshTokenRepositoryInterface
 {
     private $logger;
 
-    private $pdo;
+    private PDO $pdo;
 
     public function __construct(ContainerInterface $c)
     {
