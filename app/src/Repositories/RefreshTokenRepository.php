@@ -15,8 +15,6 @@ use OAuth2Server\Entities\RefreshTokenEntity;
 
 use Interop\Container\ContainerInterface;
 
-use \\PDO
-
 class RefreshTokenRepository implements RefreshTokenRepositoryInterface
 {
     private $logger;

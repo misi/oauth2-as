@@ -15,13 +15,12 @@ use OAuth2Server\Entities\AuthCodeEntity;
 
 use Interop\Container\ContainerInterface;
 
-use \\PDO
 
 class AuthCodeRepository implements AuthCodeRepositoryInterface
 {
     private $logger;
 
-    private PDO $pdo;
+    private $pdo;
 
     public function __construct(ContainerInterface $c)
     {

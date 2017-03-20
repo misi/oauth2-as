@@ -15,8 +15,6 @@ use OAuth2Server\Entities\ScopeEntity;
 
 use Interop\Container\ContainerInterface;
 
-use \\PDO
-
 class ScopeRepository implements ScopeRepositoryInterface
 {
     private $logger;

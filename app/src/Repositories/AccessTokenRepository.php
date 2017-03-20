@@ -16,13 +16,11 @@ use OAuth2Server\Entities\AccessTokenEntity;
 
 use Interop\Container\ContainerInterface;
 
-use \\PDO;
-
 class AccessTokenRepository implements AccessTokenRepositoryInterface
 {
     private $logger;
 
-    private PDO $pdo;
+    private $pdo;
 
     public function __construct(ContainerInterface $c)
     {

@@ -14,13 +14,11 @@ use OAuth2Server\Entities\ClientEntity;
 
 use Interop\Container\ContainerInterface;
 
-use \\PDO
-
 class ClientRepository implements ClientRepositoryInterface
 {
     private $logger;
 
-    private PDO $pdo;
+    private $pdo;
 
     public function __construct(ContainerInterface $c)
     {
