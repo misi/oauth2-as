@@ -14,7 +14,6 @@ use League\OAuth2\Server\Entities\ClientEntityInterface;
 use League\OAuth2\Server\Repositories\AccessTokenRepositoryInterface;
 use OAuth2Server\Entities\AccessTokenEntity;
 
-
 class AccessTokenRepository implements AccessTokenRepositoryInterface
 {
     private $logger;
