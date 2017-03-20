@@ -13,7 +13,7 @@ final class RedirectAction
     private $view;
 
 
-    public function __construct(LoggerInterface $logger, TWIG $view)
+    public function __construct(ContainerInterface $c)
     {
         $this->logger = $logger;
 
