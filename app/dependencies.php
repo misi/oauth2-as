@@ -175,38 +175,38 @@ $container['authserver'] = function ($c) {
 // Action factories
 // -----------------------------------------------------------------------------
 $container[OAuth2Server\Actions\AuthCodeAction::class] = function ($c) {
-    return new OAuth2Server\Actions\AuthCodeAction();
+    return new OAuth2Server\Actions\AuthCodeAction($c);
 };
 
 $container[OAuth2Server\Actions\TokenAction::class] = function ($c) {
-    return new OAuth2Server\Actions\TokenAction();
+    return new OAuth2Server\Actions\TokenAction($c);
 };
 
 $container[OAuth2Server\Actions\RedirectAction::class] = function ($c) {
-    return new OAuth2Server\Actions\RedirectAction();
+    return new OAuth2Server\Actions\RedirectAction($c);
 };
 
 //Repositories
 $container[OAuth2Server\Repositories\AccessTokenRepository::class] = function ($c) {
-    return new OAuth2Server\Repositories\AccessTokenRepository();
+    return new OAuth2Server\Repositories\AccessTokenRepository($c);
 };
 
 $container[OAuth2Server\Repositories\AuthCodeRepository::class] = function ($c) {
-    return new OAuth2Server\Repositories\AuthCodeRepository();
+    return new OAuth2Server\Repositories\AuthCodeRepository($c);
 };
 
 $container[OAuth2Server\Repositories\ClientRepository::class] = function ($c) {
-    return new OAuth2Server\Repositories\ClientRepository();
+    return new OAuth2Server\Repositories\ClientRepository($c);
 };
 
 $container[OAuth2Server\Repositories\RefreshTokenRepository::class] = function ($c) {
-    return new OAuth2Server\Repositories\RefreshTokenRepository();
+    return new OAuth2Server\Repositories\RefreshTokenRepository($c);
 };
 
 $container[OAuth2Server\Repositories\ScopeRepository::class] = function ($c) {
-    return new OAuth2Server\Repositories\ScopeRepository();
+    return new OAuth2Server\Repositories\ScopeRepository($c);
 };
 
 $container[OAuth2Server\Repositories\UserRepository::class] = function ($c) {
-    return new OAuth2Server\Repositories\UserRepository();
+    return new OAuth2Server\Repositories\UserRepository($c);
 };
