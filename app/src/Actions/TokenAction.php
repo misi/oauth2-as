@@ -9,8 +9,6 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Stream;
 
-use Psr\Log\LoggerInterface;
-
 final class TokenAction
 {
     private $logger;

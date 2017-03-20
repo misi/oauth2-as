@@ -6,11 +6,6 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Stream;
 
-use Psr\Log\LoggerInterface;
-
-use Slim\Views\Twig;
-
-
 final class RedirectAction
 {
     private $logger;
